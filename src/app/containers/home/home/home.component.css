@@ -1,0 +1,212 @@
+.section-1 {
+  position: relative;
+  top: 72px;
+  padding: 0 0px;
+  min-height: 768px;
+}
+@media screen and (max-width: 769px){
+  .section-1 {
+    position: relative;
+    top: 52px;
+  }
+}
+.ms-home {
+  width: 100%;
+  overflow: hidden;
+}
+  @media screen and (min-width: 768px){
+  .padd-me {
+    padding: 0 13px;
+  }
+  }
+.section-1 .section-01 {
+  float: left;
+  width:75%;
+}
+.section-02{
+  position:fixed; 
+  top:65px;
+  right:5px;
+  width:24.2%;
+}
+.s-menu {display: none}
+@media screen and (min-width: 1200px){
+ .section-1 {
+  padding: 0 1% 0 17%;
+}
+.section-02{
+
+  right:13%;
+  width:20.2%;
+}
+.s-menu {
+  display: block;
+  position: fixed;
+  top:65px;
+  left:5px;
+}
+}
+@media screen and (max-width: 769px){
+ .section-1 .section-01 {
+  width:100%;
+  overflow: hidden;
+}
+ .section-1 {
+    padding: 0;
+ }
+}
+
+
+.af-share h1 {
+	font-size: 2em;
+}
+.af-share i {
+	font-size: 8em;
+	color:#628d29;
+}
+.clearfix{clear:both;}
+.get-started {
+	margin-top: 15px;
+}
+.get-started h3{
+	font-size: 1.8em;
+}
+.get-started h4{
+	font-size: 1.2em;
+}
+.get-started h4 span{
+	color: #628d29;
+	font-style: italic;
+}
+.list-group-item-heading {
+	font-family: 'Baloo Bhaina', cursive;
+}
+
+.af-updates .col-md-6 {
+	margin-bottom: 10px;
+}
+.af-card {
+	margin-bottom: 10px;
+}
+@media screen and (max-width: 768px){
+	.list-group-item{
+		text-align: center;
+	}
+}
+
+
+@media screen and (max-width: 1328px) {
+    .brick {
+      height: auto;
+      width: 23vw;
+      display: inline-block;
+    }
+}
+
+@media screen and (max-width: 1024px) {
+    .brick {
+      height: auto;
+      width: 30vw;
+      display: inline-block;
+    }
+}
+.brick {
+  height: auto;
+  width: 18vw;
+  display: inline-block;
+  margin-top: 10px;
+}
+@media screen and (max-width: 480px) {
+    .brick {
+      height: auto;
+      width:300px;
+      display: inline-block;
+
+    }
+}
+
+em {
+	font-style: italic;
+	font-family: 'Lora', serif;
+}
+
+
+.intro {
+  margin: 10px 0;
+}
+.getastart {
+  padding: 20px;
+  color: #fff;
+  font-family: 'Montserrat', sans-serif;
+}
+.getastart h1{ 
+  font-size: 2em;
+  
+  font-weight: bold;
+}
+.getastart h2 {
+  font-size: 1.6em;
+  text-indent: 10px;
+}
+.getastart p{
+  font-size: 1.2em;
+  text-indent: 10px;
+  margin-top: 20px;
+}
+.getastart div, .getastart p {
+  text-align: center;
+}
+.getastart div a{
+  color: #fff;
+  font-size: 0.7em;
+  text-align: center;
+}
+.grow {
+  background: url('/assets/img/grow.jpg');
+  background-size: cover;
+  /*content: url('./assets/img/grow.jpg');*/
+  min-height: 300px;
+  width: 100%;
+}
+
+@media screen and (max-width: 500px) {
+ .grow {
+  min-height: 200px;
+ }
+}
+
+
+.list-Btn {
+  padding: 10px;
+  border: 1px solid #fff;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  cursor: pointer;
+}
+@media screen and (max-width: 768px){
+  .getastart{
+      height: 250px;
+      text-align: center;
+  }
+  .getastart h1{ 
+  font-size: 1.5em;
+  }
+  .list-Btn {
+    left:32%;
+  }
+}
+@media screen and (max-width: 320px){
+  .getastart{
+      height: 300px;
+      text-align: center;
+  }
+}
+  .search-results {
+      height: 100%;
+ 
+    }
+
+
+
+

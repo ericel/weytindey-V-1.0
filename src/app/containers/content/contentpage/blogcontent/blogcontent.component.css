@@ -1,0 +1,80 @@
+
+ .comments md-card-header, .comments md-card-header .md-card-header-text {
+    height: auto !important;
+  }
+
+   textarea {
+         height: 100px !important;
+         overflow: hidden;
+  }
+.pull-right-set {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor:pointer;
+}
+.pull-right-set [md-button], .pull-right [md-button], .pull-left [md-button]{
+      min-width: 40px !important;
+      border-radius: 100% !important;
+      cursor:pointer;
+      color: rgba(0, 0, 0, 0.54) !important;
+}
+.main {
+    overflow: hidden;
+}
+.page md-card-header { 
+    font-style: italic;
+}
+em {
+    font-style: italic !important;
+}
+
+h1, .h1 {
+    font-size: 2.5rem;
+    font-style: oblique !important;
+    color: #000;
+    
+    margin-top: 10px !important;
+}
+md-card-header {
+    margin: 0px !important; 
+}
+.display-none {
+  display: none !important;
+}
+
+/* POST CSS */
+/*:host /deep/ someElementAddedbyInnerHTML{
+
+}*/
+.blog-post{
+    font-size: 1.5em;
+    line-height: 1.5;
+}
+.blog-post h1 {
+    
+}
+.blog-post p {
+   margin: 10px 0 !important;
+   text-indent: 10px !important;
+}
+.blog-post em {
+   font-style: italic !important;
+}
+.content-update md-card-header {
+    /*white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    */
+    margin-bottom: 15px !important;
+}
+@media screen and (max-width: 769px){
+    .mar-10 {
+    margin:0px !important;
+}
+}
+.mat-card-header {
+    height: auto !important;
+}
+
+/* End POST CSS */

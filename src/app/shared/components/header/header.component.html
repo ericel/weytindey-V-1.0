@@ -1,0 +1,102 @@
+<md-toolbar  color="primary" [ngStyle]="{'background-color': bg}" class="fixed">
+
+	<div class="logo">
+	 <img routerLink="/"  src="assets/img/logo_h.png" alt="Wetin Dey?">
+	</div>
+	
+   <span class="no-sm-no app-toolbar-filler"></span>
+	 <i class="no-sm-no  fa fa-ellipsis-v fa-1x" aria-hidden="true"></i>
+	 <button class="no-sm-no" md-button style="font-style: 20px;">  {{cat}}</button>
+	
+	  <span class="app-toolbar-filler"></span>
+   <div class="no-big">
+     <button class="pull-right-s sm-search" md-button>
+			 <i class="fa fa-search" aria-hidden="true"></i>
+			</button>
+    </div>
+   <div class="no-sm-no">
+    <div class="flexsearch">
+		<div class="flexsearch--wrapper">
+			<form class="flexsearch--form" [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)">
+				<button mdTooltip="search" class="flexsearch--submit-left"  md-button type="submit"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+				<div class="flexsearch--input-wrapper"  [ngClass]="{'has-error':!searchForm.controls['search_term'].valid && searchForm.controls['search_term'].touched}">
+					<input [(ngModel)]="search_term" name="search_term" (click)="showStyle = !showStyle" 
+					class="flexsearch--input" type="search" 
+					[formControl]="searchForm.controls['search_term']" >
+					<div class="search-error">
+					 <div *ngIf="searchForm.controls['search_term'].hasError('required') && searchForm.controls['search_term'].touched" class="alert alert-danger" mdTooltip="Type Search term please...">Type Search term please...</div>
+        <div *ngIf="searchForm.controls['search_term'].hasError('minlength') && searchForm.controls['search_term'].touched" class="alert alert-danger" mdTooltip="Search term must be atleast 3 characters long.">Search term must be atleast 3 characters long.</div>
+        <div *ngIf="searchForm.controls['search_term'].hasError('maxlength') && searchForm.controls['search_term'].touched" class="alert alert-danger" mdTooltip="Search term can't be more than 50 characters long">Search term can't be more than 50 characters long</div>
+					</div>
+				</div>
+				<span class="flexsearch--close" [style.color]="focusChange()" (click)="reset()"><i class="fa fa-times" aria-hidden="true"></i></span>
+			</form>
+		</div>
+    </div>
+    </div>
+    <span class="app-toolbar-filler-2"></span>
+      <span class="link_1">
+	   <span class="just-l link_1-a " > <a   routerLink="/add" routerLinkActive="active"  [class.position-fix]="isAuthorized"> List</a></span>
+	   <span *ngIf="!isAuthorized">
+	   <a  routerLink="/authentication"> log in</a>
+	   </span>
+	   <span *ngIf="isAuthorized" class="dropdown">
+	     <a  routerLink="/user/{{ user.uid }}/{{user.auth.displayName | slugify}}" class="user-1"> <img src="{{ user.auth.photoURL }}" alt="{{ user.auth.displayName }}"></a>
+		 <a   class="position-fix dropdown-toggle" id="dropdownMenuButton" 
+		 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><!--<i class="fa fa-caret-down" 
+		 aria-hidden="true"></i>-->
+	</a>
+		   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+				<a class="dropdown-item" routerLink="/user/{{ user.uid }}/{{user.auth.displayName | slugify}}"><em>Hi! <span>{{ user.auth.displayName }}</span></em></a>
+				<a class="dropdown-item" routerLink="/user/{{ user.uid }}/{{user.auth.displayName | slugify}}"><i class="fa fa-user" aria-hidden="true"></i> My Profile</a>
+				<a class="dropdown-item" routerLink="/list"><i class="fa fa-plus-square" aria-hidden="true"></i> List Now</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" routerLink="/listing"><i class="fa fa-list" aria-hidden="true"></i> My Listing</a>
+				<div class="dropdown-divider"></div>
+				 <a class="dropdown-item" routerLink="/edit/{{ user.uid }}/{{user.auth.displayName | slugify}}">
+					<i class="fa fa-pencil" aria-hidden="true"></i> Edit profile
+				</a>
+				<div class="dropdown-divider"></div>
+				<a class="dropdown-item" (click)="logout()" routerLink=""><i class="fa fa-sign-out" aria-hidden="true"></i> Log out</a>
+			</div>
+	   </span>
+  </span>
+
+   <span class="app-toolbar-filler-2"></span>
+
+   <button class="app-icon-button" [md-menu-trigger-for]="menu">
+      <i class="material-icons app-toolbar-menu">menu</i>
+    </button>
+	<md-menu #menu="mdMenu">
+	  <a class="nav-link" md-menu-item routerLink=""><i class="fa fa-home fa-1x color-primary" aria-hidden="true"></i> <span class="pad-hd">Home</span></a>
+    <a class="nav-link" md-menu-item routerLink="/jobs"><i class="fa fa-briefcase fa-1x color-green" aria-hidden="true"></i> <span class="pad-hd"> Find a Jobs</span></a>
+    <a class="nav-link" md-menu-item routerLink="/music"><i class="fa fa-headphones fa-1x color-red" aria-hidden="true"></i> <span class="pad-hd">Music</span></a>
+    <a class="nav-link" md-menu-item routerLink="/stories"><i class="fa fa-rss fa-1x color-pink" aria-hidden="true"></i> <span class="pad-hd">Stories</span></a>
+    <a class="nav-link" md-menu-item routerLink="/places"><i class="fa fa-location-arrow fa-1x color-skyblue" aria-hidden="true"></i> <span class="pad-hd">Africa Places</span></a>
+		<a class="nav-link" md-menu-item routerLink="/users"><i class="fa fa-user fa-1x color-primary" aria-hidden="true"></i> <span class="pad-hd">Country People</span></a>
+    <a class="nav-link" md-menu-item routerLink="/questions"><i class="fa fa-question-circle fa-1x color-red" aria-hidden="true"></i> <span class="pad-hd">Answer a Questions</span></a>
+        </md-menu>
+</md-toolbar>
+
+
+ <div class="animated fadeInDown search-sm search-sm-y">
+			<form class="flexsearch--form" [formGroup]="searchForm" (ngSubmit)="search(searchForm.value)">
+         <div class="flexsearch--input-wrapper"  [ngClass]="{'has-error':!searchForm.controls['search_term'].valid && searchForm.controls['search_term'].touched}">
+					<input [(ngModel)]="search_term" name="search_term" (click)="showStyle = !showStyle" 
+					class="flexsearch--input" type="search" placeholder="search"
+					[formControl]="searchForm.controls['search_term']" >
+					<div class="search-error-p">
+					 <div *ngIf="searchForm.controls['search_term'].hasError('required') && searchForm.controls['search_term'].touched" class="alert alert-danger">Type Search term please...</div>
+        <div *ngIf="searchForm.controls['search_term'].hasError('minlength') && searchForm.controls['search_term'].touched" class="alert alert-danger">Search term must be atleast 3 characters long.</div>
+        <div *ngIf="searchForm.controls['search_term'].hasError('maxlength') && searchForm.controls['search_term'].touched" class="alert alert-danger">Search term can't be more than 50 characters long</div>
+					</div>
+				</div>
+				<div class="text-center mar-15">
+				  	<button class="search-btn" mdTooltip="search" [disabled]="!searchForm.valid"  md-raised-button color="primary" type="submit"><i class="fa fa-search fa-2x" aria-hidden="true"></i></button>
+				</div>
+				<span class="flexsearch--close" [style.color]="focusChange()" (click)="reset()"><i class="fa fa-times" aria-hidden="true"></i></span>
+			</form>
+      <div class="mar-15 text-center">
+				<h2> Type a search term and hit 'Enter'</h2>
+      </div>
+    </div>

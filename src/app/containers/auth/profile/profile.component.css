@@ -1,0 +1,88 @@
+
+
+.user-02 {
+background: #485274; /* fallback for old browsers */
+background: linear-gradient(270deg, #566ebf, #6472a0, #485274);
+background-size: 600% 600%;
+background: url('/assets/styles/bg3.png');
+-webkit-animation: AnimationName 30s ease infinite;
+-moz-animation: AnimationName 30s ease infinite;
+-o-animation: AnimationName 30s ease infinite;
+animation: AnimationName 30s ease infinite;
+ position: relative;
+ text-align: center;
+ padding: 10px;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+@-o-keyframes AnimationName {
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 52%}
+    50%{background-position:100% 49%}
+    100%{background-position:0% 52%}
+}
+.user-02 img {
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border:10px solid #00ACC1;
+}
+.user-02 h1{
+    font-size: 1.8em;
+    margin-bottom: 5px;
+}
+.user-3 ul.action-01 li {
+    display: inline;
+   
+}
+.user-a0 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-style: italic;
+    font-size: 0.8em;
+}
+.app-eusers {
+    margin: 10px 0;
+}
+
+@media screen and (max-width: 768px){
+    .main {
+        margin-top: -10px;
+    }
+}
+h2 {
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+ .md-tab-header {
+    background: #fff !important;
+}
+
+.mar-15-th{
+  margin: 10px;
+  clear: both;
+  font-size: 3em;
+  font-style: italic;
+  color: #ccd;
+}
+.drafts{
+    height: 100%;
+}
+md-tabs {
+    transition: 0s !important;
+    min-height: 700px !important;
+}

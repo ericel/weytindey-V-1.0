@@ -1,0 +1,88 @@
+<main class="main">
+  <div class="upload">
+    <md-card>
+    <div *ngIf="submitted" class="alert alert-success">
+          <a routerLink="/music/audio/{{token | slugify}}/file_name">https://weytindey.com/music/audio/{{token | slugify}}/file_name</a> <span id="countdown"></span>
+     </div>
+      <form  class="uploadform" [formGroup]="uploadForm" (ngSubmit)="uploadfile(uploadForm.value)">
+      <div class="container-fluid">
+      <div class="row guttar-0">
+        <div class="col-md-6">
+         <div class="form-group" [ngClass]="{'has-error':!uploadForm.controls['uploadType'].valid && uploadForm.controls['uploadType'].touched}">
+          <md-select   placeholder="What are you uploading?" [formControl]="uploadForm.controls['uploadType']">
+                  <md-option  value="audio">Audio</md-option>
+                  <!--<md-option  value="video">Video</md-option>-->
+        </md-select>
+        <div *ngIf="uploadForm.controls['uploadType'].hasError('required') && uploadForm.controls['uploadType'].touched" class="alert alert-danger">You must select a type</div>
+         </div>
+      </div>
+        <div class="col-md-6">
+          <div class="form-group" [ngClass]="{'has-error':!uploadForm.controls['uploadCountry'].valid && uploadForm.controls['uploadCountry'].touched}">
+          <md-select   placeholder="What country music?" [formControl]="uploadForm.controls['uploadCountry']">
+                   <md-option *ngFor="let uploadCountry of countries" [value]="uploadCountry">{{uploadCountry}}</md-option>
+        </md-select>
+        <div *ngIf="uploadForm.controls['uploadCountry'].hasError('required') && uploadForm.controls['uploadCountry'].touched" class="alert alert-danger">You must select a Country</div>
+          </div>
+      </div>
+      </div>
+      </div>
+      <audio *ngIf="uploaded" controls>
+                  <source src="{{uploadedUrl}}" type="audio/ogg">
+                  <source src="{{uploadedUrl}}" type="audio/mpeg">
+                  Your browser does not support the audio tag.
+         </audio>
+    <section *ngIf="!uploaded">
+       <div  class="avatar-area">
+                <!--<img src="image" class="avatar"/>-->
+                
+                <input type="file"
+                id="file-b"
+                accept="audio/*"
+                style="display:none;"
+                (change)="upload()"
+                >
+              <div class="control-box-p">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="file-b"    class="caption" style="margin-bottom: 0px;">
+                      <i class="fa fa-upload fa-5x" aria-hidden="true"></i>
+                    </label>
+                  </div>
+                
+                </div>
+              </div>
+              <md-progress-bar *ngIf="uploading" 
+               mode="indeterminate"
+              ></md-progress-bar>
+            </div>
+      <div class="upload-0">
+        <strong>Select File to Upload</strong>
+         <p>Only One File can be uploaded at a time</p>
+      </div>
+    </section>
+      <div class="mar-15"></div>
+      <div  class="form-group" [ngClass]="{'has-error':!uploadForm.controls['uploadName'].valid && uploadForm.controls['uploadName'].touched}">
+      <md-input-container>
+        <input mdInput   
+              placeholder="Name: artist - filename"
+              maxlength="150"
+              [(ngModel)]="file_name"
+              #characterCountHint [formControl]="uploadForm.controls['uploadName']">
+        <md-hint align="end">{{characterCountHint.value.length}} / 150</md-hint>
+        </md-input-container>
+        <div *ngIf="uploadForm.controls['uploadName'].hasError('required') && uploadForm.controls['uploadName'].touched" class="alert alert-danger">You must include a file name.</div>
+        <div *ngIf="uploadForm.controls['uploadName'].hasError('minlength') && uploadForm.controls['uploadName'].touched" class="alert alert-danger">Your filename must be at least 5 characters long.</div>
+        <div *ngIf="uploadForm.controls['uploadName'].hasError('maxlength') && uploadForm.controls['uploadName'].touched" class="alert alert-danger">Your filename cannot exceed 100 characters.</div>
+      </div>
+        <div class="mar-10">
+        <button md-raised-button color="primary" type="submit" *ngIf="uploaded"  [disabled]="!uploadForm.valid">Click to Upload</button>
+        </div>
+      </form>
+      <!--<div *ngIf="submitted" class="alert alert-success">
+       <h1>Your upload was successful!</h1>
+       <p> Your will be redirected in a moment </p>
+       <div id="countdown" class="aligned"></div>
+    </div>-->
+    </md-card>
+  </div>
+</main>

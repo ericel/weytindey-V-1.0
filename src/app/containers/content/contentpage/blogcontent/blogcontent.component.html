@@ -1,0 +1,72 @@
+<main class="main">
+   <div class="container-fluid">
+ <div *ngIf="!pageOk && !authOk" class="wait">
+        <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
+  </div>
+  <div *ngIf="pageOk && authOk && pageBlg && page" class="row gutter-20 animated slideInUp">
+     <div class="col-md-3">
+       <app-adscreate class="no-sm-no"></app-adscreate>
+       <app-adsone></app-adsone>
+       <app-adsmovies class="no-sm-no"></app-adsmovies>
+       <app-adsmusic class="no-sm-no"></app-adsmusic>
+     </div>
+     <div class="col-md-6">
+        <md-card class="shadow-2 mar-10 page-header">
+   <md-card-header>
+          <img  md-card-avatar src="{{auth.avatar}}">
+          <md-card-title><a routerLink="/user/{{ auth.uid }}/{{auth.username | slugify}}">{{auth.name}}</a> posted {{pageBlg.createdAt | amTimeAgo:true}} ago!</md-card-title>
+          <md-card-subtitle> <em> {{pageBlg.blogCat}}</em>
+            <h1 >{{pageBlg.blogTitle}}</h1>
+          </md-card-subtitle>
+         <span class="pull-right-set"><button md-button [md-menu-trigger-for]="menu">
+        <i class="fa fa fa-ellipsis-v fa-1x" aria-hidden="true"></i>
+         </button></span>
+         <md-menu #menu="mdMenu">
+          <button *ngIf="isAuthorized && pageBlg.uid === user.uid" md-menu-item routerLink="/_blog/editblog/{{pageBlg.pid}}/{{pageBlg.blogTitle | slugify}}">Edit</button>
+          <!--<button md-menu-item>Save Post</button>
+          <button md-menu-item>Delete</button>-->
+        </md-menu>
+        
+      </md-card-header>
+      <img class="blg-image" *ngIf="pageBlg.photoUrl" md-card-image src="{{pageBlg.photoUrl}}">
+      <md-card-content class="blog-post">
+          <div [innerHTML]="pageBlg.blog"></div>
+      </md-card-content>
+      <md-card-actions class="container-fluid">
+       <div class="pull-left">
+        <button md-button color="primary" (click)="showLove(page)"><i class="fa fa fa-heart fa-1x" aria-hidden="true"></i></button> {{page.rating}} showed love!
+        
+        </div>
+        <div  class="pull-right">
+        <button md-button routerLink="/add/blog"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a post</button>
+        </div>
+        <div class="clearfix"></div>
+      </md-card-actions>
+       <app-socialshare [status]="page" [title]="pageBlg.blogTitle"></app-socialshare>
+      <app-commentcard [status]="page">
+      </app-commentcard>
+      <div class="comments">
+        <app-commentscard [status] = "page" [limit]="1000000">
+        </app-commentscard> 
+      </div>
+  </md-card>
+     <md-card>
+       <div *ngFor="let pagelike of pageslike;  let i=index">
+         <app-promoListLike [pagelike]="pagelike"></app-promoListLike>
+       </div>
+     </md-card>
+     </div>
+     <div class="col-md-3">
+        <app-adslist></app-adslist>
+      <div *ngFor="let promo of promopages;  let i=index">
+      <template *ngIf="i<2  && promo.pid !== pageBlg.pid">
+        <app-promocardlist
+          [promo]="promo"
+        ></app-promocardlist>
+      </template>
+      </div>
+     </div>
+  </div>
+   </div>
+ </main>
+

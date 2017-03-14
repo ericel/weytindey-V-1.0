@@ -1,0 +1,31 @@
+.af-signup {
+ margin-top: 50px;
+ min-height: 768px;
+}
+
+button{
+    display: block;
+    width: 200px;
+    margin-top: 20px;
+    margin-right: auto;
+    margin-left: auto;
+}
+ button i {
+    position: absolute;
+    left: 10px;
+    top: 30%;
+}
+@media screen and (min-width: 768px){
+   .af-signup {
+	 width: 500px;
+	 margin: 150px auto 150px auto;
+   }
+   button{
+    width: 300px;  
+  }
+}
+p {
+	margin: 10px auto;
+	text-align: center;
+	font-size: 2em;
+}

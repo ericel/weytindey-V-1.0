@@ -1,0 +1,48 @@
+<main class="container-fluid">
+<div class="edit-0 shadow-1 mar-10" *ngIf="USER">
+<div class="header">
+   <h1> Edit Profile</h1>
+   <h2 class="primary-color"> Free Account <span class="btn btn-primary">Upgrade</span></h2>
+</div>
+   <form class="form-add" [formGroup]="editForm" (ngSubmit)="submitForm(id, editForm.value)">
+		     <div class="form-group">
+			    <label for="userName">Username</label>
+                <input class="form-control" id="userName"  [(value)]="USER.username"  readonly>
+           </div>
+
+             <div class="form-group" [ngClass]="{'has-error':!editForm.controls['city'].valid && editForm.controls['city'].touched}">
+			    <label for="city">City</label>
+                <input class="form-control has-success" id="city"  [(value)]="USER.city" [formControl]="editForm.controls['city']">
+                <div *ngIf="editForm.controls['city'].hasError('required') && editForm.controls['city'].touched" class="alert alert-danger">You must include an city.</div>
+		        <div *ngIf="editForm.controls['city'].hasError('minlength') && editForm.controls['city'].touched" class="alert alert-danger">Your city must be at least 3 characters long.</div>
+		        <div *ngIf="editForm.controls['city'].hasError('maxlength') && editForm.controls['city'].touched" class="alert alert-danger">Your city cannot exceed 300 characters.</div>
+                </div>
+             <div class="form-group" [ngClass]="{'has-error':!editForm.controls['country'].valid && editForm.controls['country'].touched}">
+		      <label for="country">Country</label>
+               <select class="custom-select mb-2 mr-sm-2 mb-sm-0 form-control" id="country" [formControl]="editForm.controls['country']" >
+                    <option  [selected] ="editForm.controls['country']"  [(value)]="USER.country">{{USER.country}}</option>
+                    <option *ngFor="let c_try of countries" [value]="c_try">{{c_try}}</option>
+                </select>
+		      <div *ngIf="editForm.controls['country'].hasError('required') && editForm.controls['country'].touched" class="alert alert-danger">You must select a country</div>
+		      </div>
+			 <div class="form-group" [ngClass]="{'has-error':!editForm.controls['job'].valid && editForm.controls['job'].touched}">
+			    <label for="job">Job</label>
+                <input class="form-control" id="job"  [(value)]="USER.job" [formControl]="editForm.controls['job']">
+                <div *ngIf="editForm.controls['job'].hasError('required') && editForm.controls['job'].touched" class="alert alert-danger">You must include an Occupation.</div>
+		        <div *ngIf="editForm.controls['job'].hasError('minlength') && editForm.controls['job'].touched" class="alert alert-danger">Your occupation must be at least 5 characters long.</div>
+		        <div *ngIf="editForm.controls['job'].hasError('maxlength') && editForm.controls['job'].touched" class="alert alert-danger">Your occupation cannot exceed 100 characters.</div>
+          </div>
+
+           <div class="form-group" [ngClass]="{'has-error':!editForm.controls['bio'].valid && editForm.controls['bio'].touched}">
+			    <label for="bio">About me.</label>
+                 <textarea class="form-control" id="bio"  [(value)]="USER.bio" [formControl]="editForm.controls['bio']" rows="3">{{USER.bio}}</textarea>
+                <div *ngIf="editForm.controls['bio'].hasError('required') && editForm.controls['bio'].touched" class="alert alert-danger">You must include a biography.</div>
+		        <div *ngIf="editForm.controls['bio'].hasError('minlength') && editForm.controls['bio'].touched" class="alert alert-danger">Your about me must be at least 20 characters long.</div>
+		        <div *ngIf="editForm.controls['bio'].hasError('maxlength') && editForm.controls['bio'].touched" class="alert alert-danger">Your about me cannot exceed 1000 characters.</div>
+          </div>
+         
+              <button md-button md-raised-button color="primary" type="submit" [disabled]="!editForm.valid" >Update Account</button>
+		</form>
+ 
+</div>
+</main>

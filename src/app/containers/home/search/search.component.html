@@ -1,0 +1,82 @@
+<div *ngIf="!statusesOk" class="wait loader container-fluid">
+    <div class="row">
+         <div class="col-md-4"  *ngFor="let item of createRange(32)">
+          <div class="timeline-wrapper">
+            <div class="timeline-item">
+              <div class="animated-background">
+                  <div class="background-masker image"></div>
+                  <div class="background-masker header-bottom"></div>
+                  <div class="background-masker paragraph1-bottom"></div>
+                  <div class="background-masker paragraph2-bottom"></div>
+                  <div class="background-masker paragraph3-bottom"></div>
+                  <div class="background-masker paragraph4-bottom"></div>
+                  <div class="background-masker paragraph5-bottom"></div>
+                  <div class="background-masker paragraph6-bottom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        </div>
+ </div>
+<main class="main" >
+
+  <div class="container-fluid" *ngIf="searchHasResults">
+    <div class="row gutter-20">
+        <div class="col-md-3">
+        <app-adscreate class="no-sm-no"></app-adscreate>
+          <app-adsone ></app-adsone>
+          <app-adsmovies class="no-sm-no"></app-adsmovies>
+        </div>
+        <div class="col-md-9">
+          <div class="container-fluid">
+            <div class="shadow-3 ordered-0">
+              <div class="row text-center-sm">
+                <div class="col-md-4">
+                <div class="tem-head">Search Term:</div>
+                  <h1 class="search_term">{{search_term}}</h1>
+                </div>
+                <div class="col-md-6">
+                  <button  md-button [mdMenuTriggerFor]="menu"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span class="sorter">Sort</span></button>
+                  <md-menu #menu="mdMenu" >
+                    <button md-menu-item (click)="stories()">Stories</button>
+                    <button md-menu-item (click)="music()">Music</button>
+                    <button md-menu-item (click)="jobs()">Jobs</button>
+                    <button md-menu-item (click)="places()">Places</button>
+                    <button md-menu-item (click)="questions()">Questions</button>
+                  </md-menu>
+                </div>
+                <div class="col-md-2">
+                <div class="tem-head">Search Count:</div>
+                  <h1>{{searchedObj.length}}</h1>
+                </div>
+              </div>
+              </div>
+            </div>
+  
+      <div class="ms-home container-fluid mar-15 ">
+        <pagination-controls (pageChange)="p = $event" #api></pagination-controls> 
+      <masonry [useImagesLoaded]="true">
+     
+        <masonry-brick class="col-md-4" *ngFor="let status of searchedObj | paginate: { itemsPerPage: 12, currentPage: p }">
+        <app-homecard
+        [status]="status"
+        (checked)="onStatusChecked($event)"
+        >
+       </app-homecard>
+       <div class="mar-15"></div>
+        </masonry-brick>
+       
+      </masonry>
+       <div *ngIf="searchedObj.length < 1" class="alert alert-warning">No results returned!</div>
+    </div>
+        </div>
+  
+   </div>
+
+  </div>
+   
+
+ <div *ngIf="!searchHasResults">
+       <div class="alert alert-warning"> No search results found! Change your search Criteria</div>
+    </div>
+</main>

@@ -1,0 +1,369 @@
+<div *ngIf="!lockOpen">
+   <main class="main">
+       <form [formGroup]="lockForm" (ngSubmit)="submitForm(lockForm.value)">
+            <div  class="form-group" [ngClass]="{'has-error':!lockForm.controls['lockKey'].valid && lockForm.controls['lockKey'].touched}">
+              <h1 class="mar-10">Enter Unlock Key</h1>
+            <md-input-container>
+              <input mdInput  
+                    placeholder="Unlock Key 9 Digits"
+                    maxlength="9"
+                    #characterCountHint [formControl]="lockForm.controls['lockKey']">
+              <md-hint align="end">{{characterCountHint.value.length}} / 9</md-hint>
+              </md-input-container>
+              <!-- The hasError method can work with the built in validators but custom validators as well -->
+              <div *ngIf="lockForm.controls['lockKey'].hasError('required') && lockForm.controls['lockKey'].touched" class="alert alert-danger">Enter Lock Key</div>
+              <div *ngIf="lockForm.controls['lockKey'].hasError('minlength') && lockForm.controls['lockKey'].touched" class="alert alert-danger">Your lock key must be  9 characters long.</div>
+              <div *ngIf="lockForm.controls['lockKey'].hasError('maxlength') && lockForm.controls['lockKey'].touched" class="alert alert-danger">Your lock key must be  9 characters long.</div>
+            </div>
+       </form>
+   </main>
+</div>
+<div *ngIf="lockOpen">
+<section class="side-bar">
+  <ul class="list-group">
+      <li class="list-group-item active">Dashboard</li>
+      <li class="list-group-item" (click)="blogs()">Blogs</li>
+      <li class="list-group-item" (click)="webcontent()">Webcontent</li>
+      <li class="list-group-item" (click)="music()">Music</li>
+      <li class="list-group-item" (click)="updates()">Status Updates</li>
+      <li class="list-group-item" (click)="jobs()">Jobs</li>
+      <li class="list-group-item" (click)="places()">Places</li>
+      <li class="list-group-item" (click)="questions()">Questions</li>
+      <li class="list-group-item" (click)="users()">Users</li>
+  </ul>
+</section>
+<section class="side-bar-right">
+  <ul class="list-group">
+      <li class="list-group-item justify-content-between">
+            Cras justo odio
+            <span class="badge badge-default badge-pill">14</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Dapibus ac facilisis in
+            <span class="badge badge-default badge-pill">2</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Morbi leo risus
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+            Cras justo odio
+            <span class="badge badge-default badge-pill">14</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Dapibus ac facilisis in
+            <span class="badge badge-default badge-pill">2</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Morbi leo risus
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+            Cras justo odio
+            <span class="badge badge-default badge-pill">14</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Dapibus ac facilisis in
+            <span class="badge badge-default badge-pill">2</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Morbi leo risus
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+            Cras justo odio
+            <span class="badge badge-default badge-pill">14</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Dapibus ac facilisis in
+            <span class="badge badge-default badge-pill">2</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Morbi leo risus
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+            Cras justo odio
+            <span class="badge badge-default badge-pill">14</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Dapibus ac facilisis in
+            <span class="badge badge-default badge-pill">2</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Morbi leo risus
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+            Cras justo odio
+            <span class="badge badge-default badge-pill">14</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Dapibus ac facilisis in
+            <span class="badge badge-default badge-pill">2</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            Morbi leo risus
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+  </ul>
+</section>
+<div class="dashboard">
+<main class="main">
+   <div class="container-fluid">
+     <div class="row gutter-10">
+        <div class="col-md-8">
+          <div  class="left-padding">
+             <md-card *ngIf="blogsOff">
+                <table  class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Img</th>
+                      <th>Title</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Date Added</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let blog of blogsAdded | paginate: { itemsPerPage: 12, currentPage: p }">
+                      <th scope="row">1</th>
+                      <td><img  class="img-blog" src="{{blog.photoUrl}}" alt="{{blog.blogTitle}}"></td>
+                      <td>{{blog.blogTitle}}</td>
+                      <td>{{blog.blogCat}}</td>
+                      <td>{{blog.blogDesc}}</td>
+                      <td>{{blog.createdAt | amTimeAgo:true}}</td>
+                      <td>{{blog.status}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+                <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+             </md-card>
+             <md-card *ngIf="webcontentOff">
+                <table  class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Img</th>
+                      <th>Title</th>
+                      <th>Category</th>
+                      <th>Description</th>
+                      <th>Date Added</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let blog of webblogsAdded | paginate: { itemsPerPage: 12, currentPage: p }">
+                      <th scope="row">1</th>
+                      <td><img  class="img-blog" src="{{blog.photoUrl}}" alt="{{blog.blogTitle}}"></td>
+                      <td>{{blog.blogTitle}}</td>
+                      <td>{{blog.blogCat}}</td>
+                      <td>{{blog.blogDesc}}</td>
+                      <td>{{blog.createdAt | amTimeAgo:true}}</td>
+                      <td>{{blog.status}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+                <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+             </md-card>
+              <md-card *ngIf="musicsOff">
+                <table  class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Img</th>
+                      <th>Country</th>
+                      <th>Filename</th>
+                      <th>Upload Auth</th>
+                      <th>Date Added</th>
+                      <th>Type</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let audio of audios | paginate: { itemsPerPage: 12, currentPage: p }">
+                      <th scope="row">1</th>
+                      <td><img  class="img-blog" src="./assets/img/audio.png" alt="{{audio.filename}}"></td>
+                      <td>{{audio.country}}</td>
+                      <td>{{audio.filename}}</td>
+                      <td>{{audio.username}}</td>
+                      <td>{{audio.createdAt | amTimeAgo:true}}</td>
+                      <td>{{audio.type}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+                <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+             </md-card>
+             <md-card *ngIf="questionOff">
+                <table  class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Img</th>
+                      <th>Type</th>
+                      <th>Question</th>
+                      <th>Question Auth</th>
+                      <th>Date Added</th>
+                      <th>Rating</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let status of questionss | paginate: { itemsPerPage: 12, currentPage: p }">
+                      <th scope="row">1</th>
+                      <td><img  class="img-blog" src="./assets/img/_status_q.png" alt="{{status.status}}"></td>
+                      <td>{{status.type}}</td>
+                      <td>{{status.status}}</td>
+                      <td>{{status.username}}</td>
+                      <td>{{status.createdAt | amTimeAgo:true}}</td>
+                      <td>{{status.rating}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+                <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+             </md-card>
+              <md-card *ngIf="updatesOff">
+                <table  class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Img</th>
+                      <th>Type</th>
+                      <th>Update</th>
+                      <th>Update Auth</th>
+                      <th>Date Added</th>
+                      <th>Rating</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let status of updatess | paginate: { itemsPerPage: 12, currentPage: p }">
+                      <th scope="row">1</th>
+                      <td><img  class="img-blog" src="./assets/img/_status.png" alt="{{status.status}}"></td>
+                      <td>{{status.type}}</td>
+                      <td>{{status.status}}</td>
+                      <td>{{status.username}}</td>
+                      <td>{{status.createdAt | amTimeAgo:true}}</td>
+                      <td>{{status.rating}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+                <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+             </md-card>
+             <md-card *ngIf="usersOff">
+                <table  class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Avatar</th>
+                      <th>Name</th>
+                      <th>City</th>
+                      <th>Bio</th>
+                      <th>Country</th>
+                      <th>Joined.Date</th>
+                      <th>Job</th>
+                      <th>Last.login</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let user of userss | paginate: { itemsPerPage: 12, currentPage: p }">
+                      <th scope="row">1</th>
+                      <td><img  class="img-blog" src="{{user.avatar}}" alt="{{user.username}}"></td>
+                      <td>{{user.name}}</td>
+                      <td>{{user.city}}</td>
+                      <td>{{user.bio}}</td>
+                      <td>{{user.country}}</td>
+                      <td>{{user.joinAt | amTimeAgo:true}}</td>
+                      <td>{{user.job}}</td>
+                      <td>{{user.lastLogIn  | amTimeAgo:true}}</td>
+                    </tr>
+                  </tbody>
+                   
+                </table>
+                <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+             </md-card>
+             <div class="mar-15"></div>
+             <div *ngIf="dashboard">
+             <md-card>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>First Name</th>
+                      <th>Last Name</th>
+                      <th>Username</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <th scope="row">1</th>
+                      <td>Mark</td>
+                      <td>Otto</td>
+                      <td>@mdo</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">2</th>
+                      <td>Jacob</td>
+                      <td>Thornton</td>
+                      <td>@fat</td>
+                    </tr>
+                    <tr>
+                      <th scope="row">3</th>
+                      <td>Larry</td>
+                      <td>the Bird</td>
+                      <td>@twitter</td>
+                    </tr>
+                  </tbody>
+                </table>
+             </md-card>
+             </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+        <div class="right-padding">
+         <ul class="list-group">
+           <li class="list-group-item justify-content-between">
+            <h1>Blogs</h1>
+            <span class="badge badge-default badge-pill" *ngIf="blogsAdded">{{blogsAdded.length}}</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+            <h1>Music Files</h1>
+            <span class="badge badge-default badge-pill" *ngIf="audios">{{audios.length}}</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+             <h1>Update Status</h1>
+            <span class="badge badge-default badge-pill" *ngIf="updatess">{{updatess.length}}</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+             <h1>Questions</h1>
+            <span class="badge badge-default badge-pill" *ngIf="questionss">{{questionss.length}}</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+             <h1>Webcontent</h1>
+            <span class="badge badge-default badge-pill" *ngIf="webblogsAdded">{{webblogsAdded.length}}</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+             <h1>Places</h1>
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+           <li class="list-group-item justify-content-between">
+             <h1>Jobs</h1>
+            <span class="badge badge-default badge-pill">1</span>
+          </li>
+          <li class="list-group-item justify-content-between">
+             <h1>Users</h1>
+            <span class="badge badge-default badge-pill" *ngIf="userss">{{userss.length}}</span>
+          </li>
+        </ul>
+        </div>
+        </div>
+     </div>
+   </div>
+</main>
+</div>
+</div>
+<router-outlet ></router-outlet>

@@ -1,0 +1,15 @@
+.search_term {
+    font-size: 1.7em;
+    font-weight: bold;
+}
+.ordered-0{
+    background: #fff;
+    border-radius: 4px;
+    padding:20px;
+}
+.ordered-0 .mat-checkbox-layout .mat-checkbox-label {
+    line-height: 28px !important;
+}
+.example-margin {
+  margin: 0 10px;
+}

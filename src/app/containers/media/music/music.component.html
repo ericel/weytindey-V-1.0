@@ -1,0 +1,71 @@
+
+<main class="main">
+<section class="musicmain">
+
+<div class="container-fluid">
+      <div class="row guitar-20">
+        <div class="col-md-3">
+          <app-adscreate class="no-sm-no"></app-adscreate>
+          <app-adsone ></app-adsone>
+          <app-adsmovies class="no-sm-no"></app-adsmovies>
+          <app-adslist class="no-sm-no"></app-adslist>
+        </div>
+        <div class="col-md-9">
+          <div class="mar-15 header-001">
+          <div class="row gutter-20 text-center-sm">
+            <div class="col-md-6">
+            <button md-button [mdMenuTriggerFor]="menu"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> By country</button>
+            <md-menu #menu="mdMenu">
+              <button md-menu-item (click)="sortCountry('Cameroon')">Cameroon</button>
+              <button md-menu-item (click)="sortCountry('Nigeria')">Nigeria</button>
+              <button md-menu-item (click)="sortCountry('Tanzania')">Tanzania</button>
+            </md-menu>
+            </div>
+            <div class="col-md-4">
+              <pagination-controls *ngIf="sources" (pageChange)="p = $event" #api></pagination-controls>
+            </div>
+            <div class="col-md-2">
+              <button  md-raised-button color="primary"  routerLink="./media/upload">Upload</button>
+            </div>
+          </div>
+          </div>
+            <div *ngIf="!sources" class=" row gutter-0">
+                   
+                    <div class="col-md-4"  *ngFor="let item of createRange(32)">
+                      <div class="timeline-wrapper">
+                        <div class="timeline-item">
+                          <div class="animated-background">
+                              <div class="background-masker image"></div>
+                              <div class="background-masker header-bottom"></div>
+                              <div class="background-masker paragraph1-bottom"></div>
+                              <div class="background-masker paragraph2-bottom"></div>
+                              <div class="background-masker paragraph3-bottom"></div>
+                              <div class="background-masker paragraph4-bottom"></div>
+                              <div class="background-masker paragraph5-bottom"></div>
+                              <div class="background-masker paragraph6-bottom"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+            <div *ngIf="sources" class="shared-music">
+              
+            <masonry [useImagesLoaded]="true">
+            
+                <masonry-brick class="col-md-4" *ngFor="let music of sources | paginate: { itemsPerPage: 18, currentPage: p }">
+                  <app-audiofilecard 
+                  [audio]="music"
+                  (play)="onAudioPlay(music)"
+                  ></app-audiofilecard>
+                </masonry-brick>
+              
+              </masonry>
+              
+            </div>
+        </div>
+
+      </div>
+</div>
+</section>
+</main>
+

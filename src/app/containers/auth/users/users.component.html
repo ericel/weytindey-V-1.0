@@ -1,0 +1,23 @@
+<div *ngIf="!users" class="wait loader">
+        <!--*ngIf="!statusesOk"<md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>-->
+         <div class="brick"  *ngFor="let item of createRange(15)">
+          <div class="timeline-wrapper">
+            <div class="timeline-item">
+              <div class="animated-background">
+                  <div class="background-masker image"></div>
+                  <div class="background-masker header-bottom"></div>
+                  <div class="background-masker paragraph1-bottom"></div>
+                  <div class="background-masker paragraph2-bottom"></div>
+                  <div class="background-masker paragraph3-bottom"></div>
+                  <div class="background-masker paragraph4-bottom"></div>
+                  <div class="background-masker paragraph5-bottom"></div>
+                  <div class="background-masker paragraph6-bottom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+<main class="main" *ngIf="users">
+   <app-userscard [limit]="200"></app-userscard>
+</main>
+

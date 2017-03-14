@@ -1,0 +1,367 @@
+
+/* -------------------------------- 
+
+Primary style
+
+-------------------------------- */
+@media screen and (min-width: 769px){
+md-toolbar {
+  -webkit-box-shadow:0 0 2px rgba(0,0,0,.14), 0 2px 4px rgba(0,0,0,.28);
+ -moz-box-shadow:    0 0 2px rgba(0,0,0,.14), 0 2px 4px rgba(0,0,0,.28);    
+ box-shadow: 0 0 2px rgba(0,0,0,.14), 0 2px 4px rgba(0,0,0,.28);
+ 
+}
+}
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
+.pad-hd {
+  padding:0px 5px;
+}
+.fixed  {
+  position: fixed !important;
+  top: 0px;
+  z-index:999;
+}
+.app-toolbar-menu {
+  padding: 0 14px 0 14px;
+  color: white;
+}
+
+.app-icon-button {
+  box-shadow: none;
+  user-select: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  filter: none;
+  font-weight: normal;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  min-width: 0;
+  padding: 0;
+  text-align: left;
+  text-decoration: none;
+}
+
+.app-toolbar-filler {
+  flex: 1 1 auto;
+}
+
+@media screen and (min-width: 769px){
+.app-toolbar-filler-2 {
+  flex: 1 1 auto;
+}
+}
+.link_1 a{
+  color: white;
+}
+@media screen and (min-width: 1024px){
+  .link_1-a a{
+  margin-right:10px;
+}
+}
+
+@media screen and  (max-width: 430px){
+  .app-icon-button {
+    left: -5px;
+    position: absolute;
+    top: 15px;
+}
+.link_1 {
+  position: relative;
+  margin-left: 5px;
+}
+}
+
+.flexsearch--wrapper {
+	height: auto;
+	width: auto;
+	width: 100%;
+	overflow: hidden;
+	background: transparent;
+	margin: -5px 0 0 0;
+	position: static;
+}
+@media screen and (min-width: 1024px){
+ .flexsearch--wrapper {
+	min-width: 600px;
+ }
+}	
+.flexsearch--form {
+	overflow: hidden;
+	position: relative;
+}
+	
+.flexsearch--input-wrapper {
+	padding: 0 100px 0 0; /* Right padding for submit button width */
+	overflow: hidden;
+}
+
+.flexsearch--input {
+  width: 100%;
+}
+
+/***********************
+ * Configurable Styles *
+ ***********************/
+.flexsearch {
+  margin-top: 7px;
+}
+
+.flexsearch--input {
+  -webkit-box-sizing: content-box;
+	-moz-box-sizing: content-box;
+	box-sizing: content-box;
+ 	height: 50px;
+  padding: 0 10px 0 90px;
+  border: none;
+  border-radius: 4px; /* (height/2) + border-width */
+  color: #c96aa4;
+	font-size: 18px;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+   background: #077f8c;
+   font-family: Monospace, Helvetica, sans-serif !important;
+}
+	
+.flexsearch--close {
+  position: absolute;
+	right: 0;
+	top: 15px;
+	display: block;
+	width: 40px;
+	height: 50px;
+  padding: 0;
+  border: none;
+  margin-right: 3px; /* border-width */
+	background: transparent;
+  color: #fcfcfc;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 20px;
+  z-index: 99;
+  cursor: pointer;
+}
+
+.flexsearch--submit-left {
+  position: absolute;
+	left: 0;
+	top: 0px;
+	display: block;
+	width: 60px;
+	height: 50px;
+  padding: 0;
+  border: none;
+	background: rgb(4, 132, 146) !important;
+  color: #eee;
+  font-family: 'Helvetica', sans-serif;
+  font-size: 20px;
+  border-bottom-right-radius: 0px !important;
+  border-top-right-radius: 0px !important;
+}
+.flexsearch--input:focus .flexsearch--submit-left {
+  color: #333;
+}
+.flexsearch--input:focus {
+  outline: none;
+    background:   rgb(4, 132, 146);
+    color: #fff;
+  
+    text-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+}
+
+.flexsearch--input:focus.flexsearch--submit {
+ 	color: #333; 
+}
+
+.flexsearch--submit:hover {
+  color: #333;
+  cursor: pointer;
+}
+
+::-webkit-input-placeholder {
+	color: #666;  
+}
+
+input:-moz-placeholder {
+  color: #666;
+}
+@media screen and (max-width: 1000px){
+  .flexsearch--input{
+    height: 40px !important;
+    padding: 0 8px 0 88px;
+
+}
+
+.flexsearch--submit-left, .flexsearch--close {
+    height: 40px !important;
+}
+.flexsearch--close {
+    top: 10px !important;
+}
+}
+.user-1 {
+  padding: 2px;
+
+}
+.user-1 img {
+  width: 30px;
+  height: 30px;
+  background: rgba(64, 75, 109, 0.81);
+  border-radius: 4px;
+  border:3px solid #0f828e
+}
+.position-fix {
+  position: relative;
+  top: -10px;
+}
+
+.dropdown-menu {
+    top: 30px !important;
+    word-wrap: break-word;
+    white-space: wrap !important;
+
+}
+.dropdown-item {
+
+    white-space: wrap !important;
+
+}
+.dropdown-menu a {
+  color: #333;
+  margin: 10px 0 !important;
+}
+.dropdown-toggle {
+  cursor: pointer;
+}
+.dropdown-item:active {
+    color: #fff;
+    text-decoration: none;
+    background-color: #fff !important;
+}
+@media screen and (max-width: 450px){
+.just-l {
+  display: none;
+}
+}
+.dropdown-item em {
+  font-style: italic;
+}
+.dropdown-item em span{
+  font-weight: bold;
+  color:#485274;
+}
+.cover {
+
+  background-color: #485274;
+  
+}
+.clearfix {
+  clear: both;
+}
+@media screen and (min-width: 1200px){
+/*.container-fluid{
+  padding:0 17% !important;
+}*/
+}
+.no-big [md-button] {
+      min-width: 40px !important;
+      border-radius: 100% !important;
+      cursor:pointer;
+}
+.search-sm {
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  height: 100%;
+  padding: 30px 10px;
+  left: 0;
+  right: 0;
+  -webkit-box-shadow: 0px 1px 1px 0px rgba(6,22,36,0.52);
+  -moz-box-shadow: 0px 1px 1px 0px rgba(6,22,36,0.52);
+  box-shadow: 0px 1px 1px 0px rgba(6,22,36,0.52);
+  z-index: 992;
+  background: #fff;
+  
+}
+
+
+.search-sm-y {
+  display: none;
+}
+.search-sm .form-wrapper {
+  margin-top: 0;
+  width: 100%;
+}
+.search-sm .form-wrapper   #submit, .search-sm .form-wrapper  #search {
+  border-radius: 0;
+}
+.logo {
+  cursor: pointer;
+}
+.search-error {
+  position:absolute;
+  top: 0px;
+  right:0px;
+  z-index:9999 !important;
+  width: 200px;
+}
+@media screen and (max-width: 769px){
+.logo img {
+ 
+  margin-left: 20px;
+}
+.logo {
+  margin-left: 10px;
+}
+.logo [md-button] {
+      min-width: 40px !important;
+      border-radius: 100% !important;
+      cursor:pointer;
+}
+.no-sm-no {
+ display: none !important;
+}
+.flexsearch--input {
+  border-radius: 0px !important;
+}
+
+.search-error {
+  top: -50px;
+  right:0px;
+}
+}
+
+@media screen and (min-width: 769px){
+
+  .search-sm {
+    display: none;
+  }
+
+  .logo {
+  margin-left: 10px;
+}
+
+}
+
+
+

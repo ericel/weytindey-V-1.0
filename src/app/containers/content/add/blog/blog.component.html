@@ -1,0 +1,107 @@
+<div class="main container-fluid">
+  <div class="container-fluid">
+   
+   <div *ngIf="pad_top" class="padding-50"></div>
+   <md-card>
+    <form *ngIf="!submitted" class="blogform" [formGroup]="blogForm" (ngSubmit)="submitForm(blogForm.value)">
+    
+       <div class="form-group" [ngClass]="{'has-error':!blogForm.controls['blogCat'].valid && blogForm.controls['blogCat'].touched}">
+       <div class="mar-10"><h1>What are you going to write about?</h1></div>
+            <md-select   placeholder="Choose Writing topic" [formControl]="blogForm.controls['blogCat']">
+              <md-option  *ngFor="let type of types" [value]="type">{{ type }}</md-option>
+            </md-select>
+            <div *ngIf="blogForm.controls['blogCat'].hasError('required') && blogForm.controls['blogCat'].touched" class="alert alert-danger">You must select a category</div>
+      </div>
+       
+       <div  class="form-group" [ngClass]="{'has-error':!blogForm.controls['blogTitle'].valid && blogForm.controls['blogTitle'].touched}">
+        <h1 class="mar-10">A Good Titile Will Make a Difference</h1>
+       <md-input-container>
+        <input mdInput  
+              placeholder="Blog Title (150 max)"
+              maxlength="150"
+              #characterCountHint [formControl]="blogForm.controls['blogTitle']">
+        <md-hint align="end">{{characterCountHint.value.length}} / 150</md-hint>
+        </md-input-container>
+        <!-- The hasError method can work with the built in validators but custom validators as well -->
+        <div *ngIf="blogForm.controls['blogTitle'].hasError('required') && blogForm.controls['blogTitle'].touched" class="alert alert-danger">You must include a Title.</div>
+        <div *ngIf="blogForm.controls['blogTitle'].hasError('minlength') && blogForm.controls['blogTitle'].touched" class="alert alert-danger">Your Title must be at least 30 characters long.</div>
+        <div *ngIf="blogForm.controls['blogTitle'].hasError('maxlength') && blogForm.controls['blogTitle'].touched" class="alert alert-danger">Your Title cannot exceed 150 characters.</div>
+      </div>
+     
+        <!--*ngIf="title_0"-->
+        <div *ngIf="title_0"  class="row form-group">
+          <div class="col-md-4">
+           <h1> Blog Photo</h1>
+           <div class="mar-10"> This gives your page a nice view in social media plateforms.</div>
+         <div class="avatar-area">
+                <img src="{{image}}" class="avatar"/>
+                <input type="file"
+                id="file-b"
+                accept="image/*"
+                style="display:none;"
+                (change)="upload()"
+                >
+              <div class="control-box">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="file-b"  md-button md-raised-button color="accent" class="caption" for="file-b" style="margin-bottom: 0px;">Select Photo</label>
+                  </div>
+                
+                </div>
+              </div>
+              <md-progress-bar *ngIf="uploading" mode="indeterminate"></md-progress-bar>
+            </div>
+          </div>
+           <div class="col-md-8 "> 
+             <h1> Blog Summary</h1>
+            <div class="form-group" [ngClass]="{'has-error':!blogForm.controls['blogDesc'].valid && blogForm.controls['blogDesc'].touched}">
+              <div class="mar-10">Don't let us decide what should appear as your page description!</div>
+              <md-input-container >
+              <textarea mdInput class="desc"
+                    placeholder="Draft of what you will write"
+                    #characterCountHintText [formControl]="blogForm.controls['blogDesc']"></textarea>
+              <md-hint align="end">{{characterCountHintText.value.length}} / 500</md-hint>
+              </md-input-container>
+              <div *ngIf="blogForm.controls['blogDesc'].hasError('required') && blogForm.controls['blogDesc'].touched" class="alert alert-danger">You must Write a Daft.</div>
+              <div *ngIf="blogForm.controls['blogDesc'].hasError('minlength') && blogForm.controls['blogDesc'].touched" class="alert alert-danger">Your Draft must be at least 150 characters long.</div>
+              <div *ngIf="blogForm.controls['blogDesc'].hasError('maxlength') && blogForm.controls['blogDesc'].touched" class="alert alert-danger">Your Draft cannot exceed 500 characters.</div>
+            </div>
+          </div>
+        </div>
+                  <!--*ngIf="title_1"  [ngClass]="{'has-error':!blogForm.controls['blogFull'].valid && blogForm.controls['blogFull'].touched}"-->
+         <div  *ngIf="title_1" class="form-group" >
+              <h1 class="mar-10"> Write your blog!</h1>
+           <!--[formControl]="blogForm.controls['blogFull']" -->
+                <simple-tiny
+                  [elementId]="'my-editor-id'"
+                  (onEditorKeyup)="keyupHandlerFunction($event)"
+                  [blogdata]="editorTxt"
+                  ngDefaultControl
+                  >
+                </simple-tiny>
+             <!--    <md-input-container>
+               <textarea md-input 
+                    class="desc-0"
+                    md-input placeholder="Write your blog"
+                    #characterCountHintTextBlog [formControl]="blogForm.controls['blogFull']"></textarea>
+              <md-hint align="end">{{characterCountHintTextBlog.value.length}} / continue!</md-hint>
+              </md-input-container>
+              
+              <div *ngIf="blogForm.controls['blogFull'].hasError('required') && blogForm.controls['blogFull'].touched" class="alert alert-danger">You must Write a blog.</div>
+              <div *ngIf="blogForm.controls['blogFull'].hasError('minlength') && blogForm.controls['blogFull'].touched" class="alert alert-danger">Your blog must be at least 150 characters long.</div>
+
+              <div *ngIf="blogForm.controls['blogFull'].hasError('maxlength') && blogForm.controls['blogFull'].touched" class="alert alert-danger">Your blog cannot exceed 1000000 characters.</div>
+              -->
+            </div>
+         
+         <button class="pull-right" md-button md-raised-button color="primary" type="submit" [disabled]="!blogForm.valid" >Publish Your Blog</button>
+    </form>
+     
+    <div *ngIf="submitted" class="alert alert-success">
+       <h1>Your Blog was successfully published!</h1>
+       <p> Your will be redirected in a moment </p>
+       <div id="countdown" class="aligned"></div>
+    </div>
+    <div class="clearfix"></div>
+   </md-card>
+ </div>

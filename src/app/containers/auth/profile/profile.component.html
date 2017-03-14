@@ -1,0 +1,113 @@
+<div class="main">
+ <div *ngIf="!USER" class="wait">
+        <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
+  </div>
+<div *ngIf="USER" class="animated slideInUp">
+  <section class="container-fluid">
+  <div class="row gutter-20">
+  <div class="col-md-2">
+    <div class="mar-10"></div>
+     <div class="user-02 shadow-1">
+            <img src="{{USER.avatar}}" alt="{{USER.name}}">
+            <md-card>
+            <h1> {{USER.name}}</h1>
+            <h2><i class="fa fa-map-marker" aria-hidden="true"></i> {{USER.city}}, {{USER.country}}</h2>
+             {{USER.bio}}
+            <button md-button color="primary">Free Account</button>
+            <md-card-actions>
+                <button md-raised-button color="primary"><i class="fa fa-hand-o-right" aria-hidden="true"></i> Follow</button>
+                <button md-raised-button color="warn"><i class="fa fa-commenting-o" aria-hidden="true"></i> Chat</button>
+            </md-card-actions>
+            </md-card>
+      </div>
+  </div>
+  <div class="col-md-7 l-side">
+  <md-tab-group>
+  <md-tab>
+    <template class="shadow-2 tabs" md-tab-label>
+      Updates({{statuses.length}})
+    </template>
+    
+    <md-card *ngIf="statuses.length==0">No records found.</md-card>
+    <div class="mar-10">
+    <masonry [useImagesLoaded]="true"> 
+                      <masonry-brick class="col-md-6" *ngFor="let status of statuses | paginate: { itemsPerPage: 10, currentPage: p }">
+                      <app-homecard
+                      [status]="status"
+                      (checked)="onStatusChecked($event)"
+                      >
+                    </app-homecard>
+                    <div class="mar-15"></div>
+                      </masonry-brick>
+       </masonry>
+        <pagination-controls (pageChange)="p = $event" #api></pagination-controls> 
+    </div>
+  </md-tab>
+  <!--<md-tab>
+    <template md-tab-label class="shadow-2 tabs">
+       Friends
+    </template>
+    <div class="container-fluid">
+      <app-userscard  [limit]="4"></app-userscard>
+      <div class="clearfix"></div>
+    </div>
+  </md-tab>
+  <md-tab routerLink="#">
+    <template md-tab-label class="shadow-2 tabs" >
+       Saved Updates
+    </template>
+   eeee
+  </md-tab>-->
+   <md-tab *ngIf="isAuth && draftscount > 0">
+    <template md-tab-label>
+       Drafts({{draftscount}})
+    </template>
+    <div class="alert alert-warning text-center"><h2>You have unfinished work! <br> Drafts will be deleted after 5 days</h2>
+         <button md-raised-button color="primary" data-toggle="collapse" [attr.data-target]="'#draf'" aria-expanded="false" aria-controls="collapseExample">Check  your drafts here</button>
+    </div>
+      <!--<md-card *ngIf="drafts.length==0">No records found.</md-card>-->
+     
+  </md-tab>
+</md-tab-group>
+  
+
+     <div class="mar-10 drafts" *ngIf="isAuth && draftscount > 0"> 
+       <div class="mar-15-th">Your Drafts--</div>
+    <masonry> 
+          <masonry-brick class="col-md-6" *ngFor="let draft of drafts">
+            <md-card class="example-card">
+              <md-card-header>
+                
+                 <div class="edit-bt">
+                  <button class="edit-btn" md-raised-button color="accent" routerLink="/_blog/editblog/{{draft.pid}}/{{draft.blogTitle | slugify}}">Edit</button>
+                  <button class="edit-btn" md-raised-button color="warn" (click)="delDraft(draft.pid)">Delete</button>
+                 </div>
+
+              </md-card-header>
+              <img md-card-image src="{{draft.photoUrl}}">
+              <md-card-content>
+                <p>
+                  {{draft.blogTitle }}
+                </p>
+              </md-card-content>
+            </md-card>
+               
+              <div class="mar-15"></div>
+               </masonry-brick>
+                 <div class="clearfix"></div>
+       </masonry>
+       <div class="mar-15-th"></div>
+    </div>
+    <div class="mar-15-th"></div>
+      
+   
+  </div>
+  <div class="col-md-3">
+    <app-authcard></app-authcard>
+    <app-adslist></app-adslist>
+      
+  </div>
+</div>
+  </section>
+</div>
+</div>

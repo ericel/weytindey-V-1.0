@@ -1,0 +1,86 @@
+
+<main class="main animated slideInUp">
+<section class="musicmain">
+
+<div class="container-fluid">
+      <div class="row guitar-20">
+        <div class="col-md-3">
+          <app-adscreate class="no-sm-no"></app-adscreate>
+          <app-adsone></app-adsone>
+          <app-adsmovies class="no-sm-no"></app-adsmovies>
+          
+        </div>
+        <div class="col-md-6">
+         <div class="mar-10"></div>
+          <md-card>
+             <div class="mar-15 header-001">
+                <button md-button><i class="fa fa-download" aria-hidden="true"></i> Download</button>
+               <button *ngIf="pageOk"  md-button color="primary" (click)="showLove(page)"><i class="fa fa fa-heart fa-1x" aria-hidden="true"></i> {{page.rating}} showed love!</button>
+              <button md-raised-button color="primary" class="pull-right" routerLink="/media/upload">Upload</button>
+              </div>
+            <div *ngIf="!sources" class=" row">
+                    <div class="col-md-4"  *ngFor="let item of createRange(32)">
+                      <div class="timeline-wrapper">
+                        <div class="timeline-item">
+                          <div class="animated-background">
+                              <div class="background-masker image"></div>
+                              <div class="background-masker header-bottom"></div>
+                              <div class="background-masker paragraph1-bottom"></div>
+                              <div class="background-masker paragraph2-bottom"></div>
+                              <div class="background-masker paragraph3-bottom"></div>
+                              <div class="background-masker paragraph4-bottom"></div>
+                              <div class="background-masker paragraph5-bottom"></div>
+                              <div class="background-masker paragraph6-bottom"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+            </div>
+            <div *ngIf="pageOk">
+            <div *ngIf="sources" class="music-11">
+              <masonry [useImagesLoaded]="true">
+            
+                <masonry-brick class="col-md-12" *ngFor="let music of sources">
+                  <app-audiofilecard 
+                  [audio]="music"
+                  (play)="onAudioPlay(music)"
+                  ></app-audiofilecard>
+                </masonry-brick>
+              
+              </masonry>
+              
+            </div>
+            
+            <app-socialshare [status]="page" [title]="page.status"></app-socialshare>
+            <app-commentcard [status]="page"></app-commentcard>
+             <app-commentscard [status]="page" [limit]="1000000">
+             </app-commentscard> 
+            </div>
+             <div *ngIf="sourcesLike" class="shared-music">
+              <h1>Checkout more of this: </h1>
+            <masonry [useImagesLoaded]="true">
+               
+                <masonry-brick class="col-md-6" *ngFor="let musiclike of sourcesLike;  let i=index">
+                <template [ngIf]="i<10">
+                  <app-audiofilecard 
+                  [audio]="musiclike"
+                  (play)="onAudioPlay(musiclike)"
+                  ></app-audiofilecard>
+                  </template>
+                </masonry-brick>
+              
+              </masonry>
+              
+            </div>
+          </md-card>
+          
+        </div>
+        <div class="col-md-3">
+             <app-adslist ></app-adslist>
+        </div>
+
+      </div>
+</div>
+</section>
+</main>
+

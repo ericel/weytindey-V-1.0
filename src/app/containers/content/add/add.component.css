@@ -1,0 +1,53 @@
+h1 {
+    font-size: 2em;
+}
+ol li {
+    padding: 10px 0;
+}
+@media screen and (min-width: 768px){
+    .start-01 {
+        margin: 20px auto;
+    }
+}
+.start-1 {
+    height: 768px;
+    width: 200px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 20%;
+    text-align: center;
+}
+.count-down {
+    text-align: center;
+    color: #666;
+    font-size: 2em;
+}
+.count-down span {
+    font-style: italic;
+
+}
+.close-01 {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+.choose .col-md-4 {
+     min-height: 200px;
+     text-align: center;
+     cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    vertical-align: center;
+    padding: 10px 0;
+    border: 1px solid #666;
+}
+.choose .col-md-4:hover {
+    background: #ccd;
+}
+.choose .col-md-4 .fa {
+    display: block !important;
+    
+}
+a:hover {
+   text-decoration: none;
+}

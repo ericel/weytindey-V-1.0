@@ -1,0 +1,72 @@
+ <main class="main">
+   <div class="container-fluid">
+ <div *ngIf="!webcontentOk && !webauthOk" class="wait">
+        <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
+  </div>
+  <div *ngIf="webcontentOk && webauthOk && webpage && webpageBlg" class="row gutter-20 animated slideInUp">
+     <div class="col-md-3">
+       <app-adscreate class="no-sm-no"></app-adscreate>
+       <app-adsone ></app-adsone>
+       <app-adsmovies class="no-sm-no"></app-adsmovies>
+       <app-adsmusic class="no-sm-no"></app-adsmusic>
+     </div>
+     <div class="col-md-6">
+        <md-card class="shadow-2 mar-10 page-header">
+   <md-card-header>
+          <img  md-card-avatar src="{{auth.avatar}}">
+          <md-card-title><a routerLink="/user/{{ auth.uid }}/{{auth.username | slugify}}">{{auth.name}}</a> posted {{webpageBlg.createdAt | amTimeAgo:true}} </md-card-title>
+          <md-card-subtitle>{{webpageBlg.blogCat}} 
+            <h1 >{{webpageBlg.blogTitle}}</h1>
+          </md-card-subtitle>
+         <span class="pull-right-set"><button md-button [md-menu-trigger-for]="menu">
+        <i class="fa fa fa-ellipsis-v fa-1x" aria-hidden="true"></i>
+         </button></span>
+         <md-menu #menu="mdMenu">
+          <button *ngIf="isAuthorized && webpageBlg.uid === user.uid" md-menu-item routerLink="/_blog/editblog/{{webpageBlg.pid}}/{{webpageBlg.blogTitle | slugify}}">Edit</button>
+          <!--<button md-menu-item (click)="savePost()">Save Post</button>-->
+        </md-menu>
+        
+      </md-card-header>
+      <iframe *ngIf="(webpageBlg.videoUrl).length > 2" [src]="srcUrl"  frameBorder="0" scrolling="no" allowTransparency="true" allowFullScreen="true" data-autoplay="true"></iframe>
+    
+      <img  class="blg-image" *ngIf="(webpageBlg.videoUrl).length < 2 && webpageBlg.photoUrl" md-card-image src="{{webpageBlg.photoUrl}}">
+      <md-card-content class="blog-post">
+          <div [innerHTML]="webpageBlg.blogDesc"></div>
+          <div class="mar-15">
+             <a target="_blank" href="{{webpageBlg.blogUrl}}">Click here to read more of this story</a>
+          </div>
+      </md-card-content>
+
+      <md-card-actions class="container-fluid">
+       <div class="pull-left">
+        <button md-button color="primary" (click)="showLove(webpage)"><i class="fa fa fa-heart fa-1x" aria-hidden="true"></i></button> {{webpage.rating}} showed love!
+        
+        </div>
+        <div  class="pull-right">
+        <button md-button routerLink="/add/blog"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> Add a post</button>
+        </div>
+        <div class="clearfix"></div>
+      </md-card-actions>
+       <app-socialshare [status]="webpage" [title]="webpageBlg.blogTitle"></app-socialshare>
+      <app-commentcard [status]="webpage">
+      </app-commentcard>
+      <div class="comments">
+        <app-commentscard [status] = "webpage" [limit]="1000000">
+        </app-commentscard> 
+      </div>
+  </md-card>
+     <md-card>
+       <div *ngFor="let webpagelike of webpageslike;  let i=index">
+         <template [ngIf]="i<5">
+         <app-promoListLike [pagelike]="webpagelike"></app-promoListLike>
+         </template>
+       </div>
+     </md-card>
+     </div>
+     <div class="col-md-3">
+        <app-adslist></app-adslist>
+     
+     </div>
+  </div>
+   </div>
+ </main>

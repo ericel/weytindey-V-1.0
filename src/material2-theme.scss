@@ -1,0 +1,42 @@
+
+@import '~@angular/material/core/theming/all-theme';
+
+
+@include mat-core();
+
+$primary: mat-palette($mat-cyan, 700, 500, 900);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+
+@include angular-material-theme($theme);
+
+.m2app-dark {
+  $dark-primary: mat-palette($mat-pink, 700, 500, 900);
+  $dark-accent:  mat-palette($mat-blue-grey, A200, A100, A400);
+  $dark-warn:    mat-palette($mat-deep-orange);
+
+  $dark-theme: mat-dark-theme($dark-primary, $dark-accent, $dark-warn);
+
+  @include angular-material-theme($dark-theme);
+}
+
+.m2app-purple {
+  $purple-primary: mat-palette($mat-purple, 700, 500, 900);
+  $purple-accent:  mat-palette($mat-pink, A200, A100, A400);
+  $purple-warn:    mat-palette($mat-deep-orange);
+
+  $purple-theme: mat-light-theme($purple-primary, $purple-accent, $purple-warn);
+
+  @include angular-material-theme($purple-theme);
+}
+
+.m2app-gray {
+  $gray-primary: mat-palette($mat-grey, 700, 500, 900);
+  $gray-accent:  mat-palette($mat-pink, A200, A100, A400);
+  $gray-warn:    mat-palette($mat-deep-orange);
+
+  $gray-theme: mat-light-theme($gray-primary, $gray-accent, $gray-warn);
+
+  @include angular-material-theme($gray-theme);
+}

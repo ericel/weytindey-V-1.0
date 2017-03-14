@@ -1,0 +1,74 @@
+<div class="playlist-0">
+<section class="main-playlist">
+  <div class="container-fluid">
+     <div class="row gutter-20 flex-0">
+        <div class="col-md-3 col-list items ">
+           <ul class="list-group">
+             <li class="list-group-item justify-content-between active">
+                <h1 class="list-title"><i class="fa fa-th-list" aria-hidden="true"></i> P Square: Say your love album
+                <span class="badge badge-default badge-pill">14</span>
+                </h1>
+                
+              </li>
+              <li class="list-group-item justify-content-between active" *ngFor="let item of streams" (click)="onClickStream(item)">
+                {{item.filename}}
+                <span class="badge badge-default badge-pill">14</span>
+              </li>
+            </ul>
+            <label>
+                Media Url: <input type="text" [(ngModel)]="currentStream">
+            </label>
+        </div>
+        <div class="col-md-6 col-player play-0 ">
+            <vg-player (onPlayerReady)="onPlayerReady($event)">
+                    <vg-controls>
+                        <vg-play-pause></vg-play-pause>
+                        <vg-playback-button></vg-playback-button>
+
+                        <vg-time-display vgProperty="current" vgFormat="mm:ss"></vg-time-display>
+
+                        <vg-scrub-bar>
+                            <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+                            <vg-scrub-bar-buffering-time></vg-scrub-bar-buffering-time>
+                        </vg-scrub-bar>
+
+                        <vg-time-display vgProperty="total" vgFormat="mm:ss"></vg-time-display>
+
+                        <vg-mute></vg-mute>
+
+                    </vg-controls>
+
+                    <audio vgMedia id="singleVideo" preload="none" >
+                        <source *ngFor="let item of streams"  [src]="currentStream" [type]="audio/mp3">
+                    </audio>
+             </vg-player>
+             <div class="row mar-15">
+               <div class="col-md-6">
+                 <img class="creator-avatar" src="./assets/img/user-avatar.png" alt="Creator">
+                 <a routerLink="#">Oj Obasi</a><br>
+                 <small>created 2 hours ago!</small>
+               </div>
+                <div class="col-md-6">
+                  <button md-button color="primary" (click)="showLove(webpage)"><i class="fa fa fa-heart fa-1x" aria-hidden="true"></i></button> webpage.rating showed love!
+               </div>
+             </div>
+            
+             <app-adsone ></app-adsone>
+          <div class="innertube">
+             <app-socialshare [status]="page" [title]="page.status"></app-socialshare>
+            <app-commentcard [status]="page"></app-commentcard>
+             <app-commentscard [status]="page" [limit]="1000000">
+             </app-commentscard> 
+             </div>
+        </div>
+         <div class="col-md-3 col-list ads-0">
+           <app-adscreate class="no-sm-no"></app-adscreate>
+          <app-adsone ></app-adsone>
+          <app-adsmovies class="no-sm-no"></app-adsmovies>
+          <app-adslist class="no-sm-no"></app-adslist>
+         </div>
+     </div>
+  </div>
+</section>
+<div class="clearfix"></div>
+</div>

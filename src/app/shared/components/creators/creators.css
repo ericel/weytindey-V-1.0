@@ -1,0 +1,62 @@
+
+.blur {
+  height: 0px;
+  width: 100%;
+  z-index: -1;
+  position: relative;
+  filter: blur(10px);
+  -webkit-filter: blur(10px);
+  -moz-filter: blur(10px);
+  -o-filter: blur(10px);
+  -ms-filter: blur(10px);
+  filter: url("#blur");
+  filter: progid: DXImageTransform.Microsoft.Blur(PixelRadius='10');
+  overflow: hidden;
+}
+.updatestatus .close [md-button]{
+      min-width: 40px !important;
+      border-radius: 100% !important;
+      cursor:pointer;
+      color: #fff !important;
+   }
+  .updatestatus {
+    margin: 0 0 10px 0;
+    position:relative;
+  }
+  .updatestatus textarea {
+    min-height: 150px !important;
+    margin: 10px 0 !important;
+  }
+ .updatestatus .auth-010 {
+    position: absolute;
+    left: 5px;
+    top: -43px;
+    color: #fff;
+  }
+  .updatestatus .auth-010 span{
+    float:left;
+  }
+  .updatestatus .auth-010 .span {
+    margin: 10px 0 0 10px;
+  }
+  .updatestatus .close {
+    position: relative;
+    right: 5px;
+    top: -43px;
+    color: #fff;
+  }
+  .form-control {
+    border: 0px !important;
+  }
+  .tags-01 {
+    font-size: 0.6em;
+    font-style: italic;
+  }
+
+.sharecard .btn {
+  width: 100% !important;
+}
+md-card {
+  border-top: 2px solid #0097A7 !important;
+  border-bottom: 2px solid #0097A7 !important;
+}

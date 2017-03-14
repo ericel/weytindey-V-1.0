@@ -1,0 +1,54 @@
+.side-bar {
+    position: fixed;
+    top:60px;
+    left: 0px;
+    min-height: 100%;
+    -webkit-box-shadow: 3px 3px 11px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    3px 3px 11px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         3px 3px 11px 0px rgba(50, 50, 50, 0.75);
+    z-index: 992;
+    width: 150px;
+    background: #fff;
+}
+.side-bar-right {
+    position: fixed;
+    top:60px;
+    right: 0px;
+    min-height: 100%;
+    -webkit-box-shadow: 3px 3px 11px 0px rgba(50, 50, 50, 0.75);
+    -moz-box-shadow:    3px 3px 11px 0px rgba(50, 50, 50, 0.75);
+    box-shadow:         3px 3px 11px 0px rgba(50, 50, 50, 0.75);
+    z-index: 992;
+    width: 250px;
+    background: #fff;
+}
+
+.side-bar .active, .side-bar-right .active {
+    background-color: #0097a7 !important;
+    border-color: #0097a7 !important;
+}
+.dashboard {
+    position:relative;
+    min-height: 769px;
+    
+}
+.left-padding {
+    padding-left: 80px;
+}
+.right-padding{
+    padding-right: 180px;
+}
+.list-group-item h1 {
+    font-size: 2em;
+}
+.list-group-item {
+    cursor: pointer;
+}
+.img-blog {
+    height: 50px;
+    width: 50px;
+    border-radius: 4px;
+}
+ md-input-container, md-select {
+     width: 100%;
+   }

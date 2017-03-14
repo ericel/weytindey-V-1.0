@@ -1,0 +1,79 @@
+<main class="main">
+  <div class="container-fluid">
+      <div *ngIf="!blog" class="alert alert-warning"> Stop Messing around! Your account may be deleted</div>
+      <md-card *ngIf="blog">
+        <div class="alert alert-success mar-10">
+           <h1>Edit Your blog</h1>
+        </div>
+      <form #form="ngForm" (ngSubmit)="onSubmitEdit(form.value)">
+        <div class="form-group">
+         
+         <md-select   placeholder="Choose Writing topic" [(ngModel)]="blog.blogCat" name="blogCat">
+             
+              <md-option  *ngFor="let type of types" [value]="type">{{ type }}</md-option>
+        </md-select>
+        </div>
+        <div class="form-group">
+           <md-input-container>
+        <input mdInput   
+              placeholder="Blog Title (150 max)"
+              maxlength="150"
+              name="blogTitle"
+              [(ngModel)]="blog.blogTitle"
+              #characterCountHint
+               >
+        <md-hint align="end">{{characterCountHint.value.length}} / 150</md-hint>
+        </md-input-container>
+        </div>
+        <div   class="form-group  row">
+          <div class="col-md-3">
+             <div class="avatar-area">
+                <img src="{{blog.photoUrl}}" class="avatar"/>
+                <input type="file"
+                id="file-b"
+                accept="image/*"
+                style="display:none;"
+                (change)="upload()"
+                >
+              <div class="control-box">
+                <div class="row">
+                  <div class="col-md-12">
+                    <label for="file-b"  md-button md-raised-button color="accent" class="caption" for="file-b" style="margin-bottom: 0px;">Select Photo</label>
+                  </div>
+                
+                </div>
+              </div>
+              <md-progress-bar *ngIf="uploading" mode="indeterminate"></md-progress-bar>
+            </div>
+          </div>
+          <div class="col-md-9">
+             <md-input-container >
+              <textarea mdInput class="desc"
+                    placeholder="Draft of what you will write"
+                    #characterCountHintText
+                    maxlength="300"
+                     name="blogDesc"
+                    [(ngModel)]="blog.blogDesc"
+                   
+                    ></textarea>
+              <md-hint align="end">{{characterCountHintText.value.length}} / 500</md-hint>
+              </md-input-container>
+          </div>
+        </div>
+        <div class="form-group">
+            <simple-tiny
+                  [elementId]="'my-editor-id'"
+                  (onEditorKeyup)="keyupHandlerFunction($event)"
+                  name="blog"
+                  [(ngModel)]="blog.blog"
+                  [blogdata]="blog.blog"
+                  ngDefaultControl
+                  >
+                </simple-tiny>
+                
+        </div>
+         <button md-raised-button type="submit" color="primary">Update Blog</button>
+      </form>
+      </md-card>
+  </div>
+</main>

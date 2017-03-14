@@ -1,0 +1,17 @@
+<main class="container-fluid">
+<div class="af-signup animated shake">
+ <md-card>
+         <md-card-header>
+            <img md-card-avatar src="./assets/img/user-avatar.png">
+            <md-card-title><a routerLink="/signup">Sign Up Or Log in</a></md-card-title>
+            <md-card-subtitle><em>Claim your free AF10 credits!</em></md-card-subtitle>
+         </md-card-header>
+         <md-card-content>
+            <p>Click to sign in to Afqouta</p>
+            <button md-raised-button color="primary" (click)="authenticate('facebook')"><i class="fa fa-facebook-official" aria-hidden="true"></i> Facebook Log in</button>
+            <button md-raised-button color="accent" (click)="authenticate('google')"><i class="fa fa-google-plus-square" aria-hidden="true"></i> Google Log in</button>
+         </md-card-content>
+   </md-card>
+</div>
+</main>
+

@@ -1,0 +1,10 @@
+
+<div [class.m2app-dark]="isDarkTheme" [class.m2app-purple]="isPurpleTheme" [class.m2app-gray]="isGrayTheme">
+<app-header></app-header>
+ <md-progress-bar *ngIf="progress" class="show-nav" mode="indeterminate"></md-progress-bar> 
+      <router-outlet ></router-outlet>
+  
+<strong [innerHtml]="testhtml"></strong>
+<app-footer></app-footer>
+</div>
+

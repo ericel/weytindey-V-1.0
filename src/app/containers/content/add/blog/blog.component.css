@@ -1,0 +1,69 @@
+.desc-0 {
+    height: 400px;
+  }
+  .avatar-area {
+    position: relative;
+    text-align: center;
+    margin: 10px auto;
+    width: 100%;
+  }
+.avatar {
+  width: 100%;
+  height: 200px;
+}
+.desc {
+  height: 200px;
+}
+.control-box {
+  position: absolute;
+  background-color: #434651;
+  zoom: 1;
+  filter: alpha(opacity=70);
+  -webkit-opacity: 0.7;
+  -moz-opacity: 0.7;
+  opacity: 0.7;
+  bottom: 0;
+  left: 0;
+  font-size: 10px;
+  line-height: 19px;
+  padding: 7px 0;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+.delete-img {
+  position:absolute;
+  top:2px;
+  right:2px;
+  cursor: pointer;
+}
+
+  h1 {
+    font-size: 1.5em;
+    padding: 10px 0;
+    color: rgb(19, 25, 90);
+    text-decoration: unset;
+  }
+  .mar-10 {
+    margin: 10px 0;
+  }
+  .blogform {
+    margin-top: 20px;
+  }
+   md-input-container, md-select {
+     width: 100%;
+   }
+   .padding-50 {
+     padding-top: 120px;
+     padding-bottom: 20px;
+   }
+   .container-fluid {
+     padding-right: 15px !important;
+     padding-left: 15px !important;
+     padding-top: 50px !important;
+   }
+   .file-over { border: dotted 3px red; } 
+   textarea {
+     background: #fff !important;
+     padding: 10px;
+   }

@@ -1,0 +1,153 @@
+<div *ngIf="!statusesOk" class="wait loader">
+        <!--*ngIf="!statusesOk"<md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>-->
+         <div class="brick"  *ngFor="let item of createRange(32)">
+          <div class="timeline-wrapper">
+            <div class="timeline-item">
+              <div class="animated-background">
+                  <div class="background-masker image"></div>
+                  <div class="background-masker header-bottom"></div>
+                  <div class="background-masker paragraph1-bottom"></div>
+                  <div class="background-masker paragraph2-bottom"></div>
+                  <div class="background-masker paragraph3-bottom"></div>
+                  <div class="background-masker paragraph4-bottom"></div>
+                  <div class="background-masker paragraph5-bottom"></div>
+                  <div class="background-masker paragraph6-bottom"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+ </div>
+<main class="main" *ngIf="statusesOk">
+  <div class="container-fluid" >
+
+    
+      <div class="row gutter-10">
+        <div class="col-md-4">
+          <app-updatecard ></app-updatecard>
+        </div>
+        <div class="col-md-4 no-sm-no">
+       <app-usersOnlinecard [limit]="5"></app-usersOnlinecard>
+        </div>
+        <div class="col-md-4 no-sm-no">
+          <div class="padd-me"><app-authcard></app-authcard></div>
+        </div>
+      </div>
+
+      <div class="ms-home">
+        <div class="innertube">
+          <div class="row gutter-0 text-center-sm">
+            <div class="col-md-2">
+            <button  md-button [mdMenuTriggerFor]="menu"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span class="sorter">Sort</span></button>
+            <md-menu #menu="mdMenu" >
+              <button md-menu-item (click)="stories()">Stories</button>
+              <button md-menu-item (click)="music()">Music</button>
+              <button md-menu-item (click)="jobs()">Jobs</button>
+              <button md-menu-item (click)="places()">Places</button>
+              <button md-menu-item (click)="questions()">Questions</button>
+            </md-menu>
+            </div>
+            <div class="col-md-4 quote">
+              <blockquote class="no-sm-no"> The miracle is this: the more we share the more we have. Leonard Nimoy</blockquote>
+            </div>
+            <div class="col-md-6">
+              <pagination-controls class="pull-right"  (pageChange)="p = $event" #api></pagination-controls>
+            </div>
+          </div>
+          </div>
+      <masonry [useImagesLoaded]="true">
+     
+        <masonry-brick class="col-md-3 " *ngFor="let status of statuses | paginate: { itemsPerPage: 12, currentPage: p }">
+        <app-homecard
+        [status]="status"
+        (checked)="onStatusChecked($event)"
+        >
+       </app-homecard>
+       <div class="mar-15"></div>
+      
+        </masonry-brick>
+        
+      </masonry>
+
+      <div *ngIf="statuses.length < 1" class="alert alert-warning">No Results to show yet</div>
+    </div>
+  </div>
+</main>
+<!--<section *ngIf="statusesOk" class="section-1" >
+
+  <aside class="s-menu">
+    <app-asidecard></app-asidecard>
+  </aside>
+  <div class="container-fluid" >
+  
+    
+      <div class="row gutter-0">
+        <div class="col-md-4">
+          <app-updatecard></app-updatecard>
+        </div>
+        <div class="col-md-4 no-sm-no">
+       <app-usersOnlinecard [limit]="5"></app-usersOnlinecard>
+        </div>
+        <div class="col-md-4 no-sm-no">
+          <div class="padd-me"><app-authcard></app-authcard></div>
+        </div>
+      </div>
+      <div class="ms-home">
+      <masonry [useImagesLoaded]="true">
+      
+        <masonry-brick class="col-md-4" *ngFor="let status of statuses">
+        <app-homecard
+        [status]="status"
+        (checked)="onStatusChecked($event)"
+        >
+       </app-homecard>
+       <div class="mar-15"></div>
+        </masonry-brick>
+      </masonry>
+    </div>
+  </div>
+</section>
+  <!--<section class="section-01">
+  <div class="row gutter-10">
+   <div class="col-lg-4  no-sm-no ">
+     <div *ngFor="let promo of promopages;  let i=index">
+     <template [ngIf]="i<2">
+      <app-promocardlist
+        [promo]="promo"
+      ></app-promocardlist>
+     </template>
+     </div>
+          <app-adslist></app-adslist>
+   </div>
+     <div class="col-lg-8">
+       <!--(createStatus)="onCreateStatus($event)"-->
+     <!-- <app-updatecard></app-updatecard>
+       <div class="search-results"
+         infinite-scroll
+         [infiniteScrollDistance]="scrollDistance"
+         [infiniteScrollThrottle]="throttle"
+         (scrolled)="onScrollDown()">
+       <app-homecard
+        *ngFor="let status of statuses"
+        [status]="status"
+        (checked)="onStatusChecked($event)"
+        >
+       </app-homecard>
+       </div>
+    
+    </div>   
+ </div>
+  </section>
+  <section class="section-02 no-sm-no">
+   <div class="side-1">
+     <div class="row gutter-10">
+        <div class="col-lg-12">
+          <app-authcard></app-authcard>
+          <app-adsone></app-adsone>
+        </div>
+    </div>
+  </div>
+
+  </section>
+  <div class="clearfix"></div>
+</section>-->
+
