@@ -14,6 +14,7 @@ import { CommentsCard } from './cards/commentscard';
 export { SimpleTinyCard } from './creators/SimpleTinyCard';
 import { PromoCardList, AdslistlikeCard } from './cards/promolistcard';
 import { AudiofileCard } from './cards/mediaplayerscard';
+import { ContactCard } from './creators/chatcard';
 export const SHARED_COMPONENTS = [
   AdslistCard, AdsOneCard, AdscreateCard, AdsmoviesCard, AdsmusicCard,
   UsersCard,
@@ -29,7 +30,8 @@ export const SHARED_COMPONENTS = [
   CommentCard,
   CommentsCard,
   PromoCardList, AdslistlikeCard,
-  AudiofileCard
+  AudiofileCard,
+  ContactCard
 ];
 
 export const ENTRY_COMPONENTS = [

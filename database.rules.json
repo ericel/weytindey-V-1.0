@@ -1,0 +1,27 @@
+{
+  "rules": {
+    ".read": true,
+    ".write": "auth != null",
+    "eComments": {
+      ".indexOn": [
+        "createdAt",
+        "sid"
+      ]
+    },
+    "eblogs": {
+      ".indexOn": [
+        "uid"
+      ]
+    },
+    "eCommentRaters": {
+      ".indexOn": [
+        "sid"
+      ]
+    },
+    "eStatusRaters": {
+      ".indexOn": [
+        "sid"
+      ]
+    }
+  }
+}
