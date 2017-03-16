@@ -35,8 +35,11 @@ id; auth; page; pageOk: boolean = false;
      } 
      });
      this._mediaService.getAudio(this.id).first().subscribe(sources => {
-       //this.metaService.setTag('og:image',this.product.imageURL);
-        this._metaService.setTitle(sources.filename.replace(/<(?:.|\n)*?>/gm, ''));
+        this._metaService.setTag('og:image', "https://weytindey.com/assets/img/audio.png");
+        this._metaService.setTitle("Download and Listen to" + " " + sources.filename.replace(/<(?:.|\n)*?>/gm, '') + " " + "free");
+        this._metaService.setTag('description', "Get the best of African Music online! "+sources.filename.replace(/<(?:.|\n)*?>/gm, '')+" is a "+sources.country+" hit song.");
+        this._metaService.setTag('date', ""+sources.createdAt+"");
+        this._metaService.setTag('robots', "index,follow");
         this._authService.userById(sources.uid).subscribe(auth => {this.auth = auth; 
         this.sources = [
           {

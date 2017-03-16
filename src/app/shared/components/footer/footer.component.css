@@ -238,7 +238,7 @@
     overflow: hidden;
     display: flex;
 }
-img {
+.msg_container img {
     display: block;
     width: 100%;
 }
