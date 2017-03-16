@@ -194,6 +194,7 @@
   margin: 0;
   padding: 0 10px 10px;
   max-height:300px;
+  min-height: 300px;
   overflow-x:hidden;
 }
 .panel-footer {
@@ -334,6 +335,15 @@
 .panel-footer input {
 	border: none !important;
 }
+.contact-box  md-input-container, md-select {
+     width: 100%;
+   }
 .contact-box .fa {
 	cursor: pointer;
+}
+.s-into {
+	text-align: center;
+	font-size: 13px;
+    color: #ccc;
+	font-style: italic;
 }

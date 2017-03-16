@@ -6,7 +6,7 @@
         	<div class="panel panel-default">
                 <div class="panel-heading top-bar">
                     <div class="pull-left">
-                        <h3 class="panel-title"><i class="fa fa-commenting" aria-hidden="true"></i> Chat - Miguel</h3>
+                        <h3 class="panel-title"><i class="fa fa-commenting" aria-hidden="true"></i> Contact Us <span *ngIf="isAuthorized"> - {{ user.auth.displayName }}</span></h3>
                     </div>
                     <div class="pull-right" style="text-align: right;">
                         <span id="minim_chat_window" class="fa fa-minus icon_minim"></span>
@@ -14,41 +14,74 @@
                     </div>
                 </div>
                 <div class="panel-body msg_container_base">
-                    <div class="row gutter-10 msg_container base_sent">
+					<span *ngIf="!isAuthorized">
+						 <em>You Need to <a routerLink="/authentication">Log in</a> to make contact</em>
+					</span>
+					<div *ngIf="isAuthorized" >
+						<div class="s-into">
+							One way secured contact form for our users! This messages can only be seen by you and your contact administrator.
+						</div>
+					<div *ngIf="contactMessages">
+						<div *ngFor="let message of contactMessages">
+                    <div *ngIf="message.con_type === 'admin_main' && ms_key === message.mid" class="row gutter-10 msg_container base_sent">
                         <div class="col-md-10 col-sm-10">
                             <div class="messages msg_sent">
-                                <p>that mongodb thing looks good, huh?
-                                tiny master db, and huge document store</p>
-                                <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                <p>{{message.message}}</p>
+                                <time>{{message.username | shorten: 8: '.'}} • {{message.createdAt | amTimeAgo:true}} ago!</time>
                             </div>
                         </div>
                         <div class="col-md-2 col-sm-2 avatar">
-                            <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                            <img src="{{message.avatar}}" alt="{{message.username}}" class=" img-responsive ">
                         </div>
                     </div>
-                    <div class="row gutter-10 msg_container base_receive">
+                    <div *ngIf="message.con_type === 'sender_main' && ms_key === message.mid" class="row gutter-10 msg_container base_receive">
                         <div class="col-md-2 col-sm-2 avatar">
-                            <img src="http://www.bitrebels.com/wp-content/uploads/2011/02/Original-Facebook-Geek-Profile-Avatar-1.jpg" class=" img-responsive ">
+                            <img src="{{message.avatar}}" alt="{{message.username}}" class=" img-responsive ">
                         </div>
                         <div class="col-md-10 col-sm-10">
                             <div class="messages msg_receive">
-                                <p>that mongodb thing looks good, huh?
-                                tiny master db, and huge document store</p>
-                                <time datetime="2009-11-13T20:00">Timothy • 51 min</time>
+                                <p>{{message.message}}</p>
+                                <time>{{message.username | shorten: 8: '.'}} • {{message.createdAt | amTimeAgo:true}} ago!</time>
                             </div>
                         </div>
                     </div>
-                   
+					</div>
+						<div class="s-into" *ngIf="nomessages">
+							  We are waiting to hear from you. All inquiries are welcomed!
+						</div>
+					</div>
+					
+					</div>
                 </div>
                 <div class="panel-footer">
-                    <div class="input-group">
-                        <input id="btn-input" type="text" class="form-control input-sm chat_input" placeholder="Write your message here..." />
-                        <span class="input-group-btn">
-                        <button md-raised-button color="primary" class="btn-sm" id="btn-chat">Send</button>
-                        </span>
+					 <form *ngIf="isAuthorized" [formGroup]="contactForm" (ngSubmit)="submitContact(contactForm.value)">
+						<div class="container">
+						<div class="row gutter-0">
+						  <div class="col-md-8">
+								<div  class="form-group" [ngClass]="{'has-error':!contactForm.controls['message'].valid && contactForm.controls['message'].touched}">
+									<md-input-container>
+									<textarea mdInput class="form-control input-sm chat_input"
+											placeholder="Write your message here..."
+											maxlength="500"
+											#characterCountHint [formControl]="contactForm.controls['message']">
+									</textarea>
+									<md-hint align="end">{{characterCountHint.value.length}} / 500</md-hint>
+									</md-input-container>
+								
+								<!-- The hasError method can work with the built in validators but custom validators as well -->
+								<div *ngIf="contactForm.controls['message'].hasError('required') && contactForm.controls['message'].touched" class="alert alert-danger">Type your message..</div>
+								<div *ngIf="contactForm.controls['message'].hasError('minlength') && contactForm.controls['message'].touched" class="alert alert-danger">Message must be atleast 1 character long</div>
+								<div *ngIf="contactForm.controls['message'].hasError('maxlength') && contactForm.controls['message'].touched" class="alert alert-danger">Message cannot be more than 500 characters long.</div>
+								</div>
+						  </div>
+						 <div class="col-md-4 ">
+                            <button md-raised-button color="primary" class="pull-right" type="submit" [disabled]="!contactForm.valid">Send</button>
+                          </div>
+						</div>
+						</div>
+					 </form>
                     </div>
-                   
-                </div>
+    
     		</div>
         </div>
     </div>
@@ -84,7 +117,7 @@
 					·
 					<a routerLink="/dmca">DMCA</a>
 				</p>
-				<p class="footer-company-name">weytindey &copy; 2015</p>
+				<p class="footer-company-name">weytindey &copy; 2017</p>
 			</div>
 
 			<div class="footer-center">

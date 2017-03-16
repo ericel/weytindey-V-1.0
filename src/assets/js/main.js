@@ -55,7 +55,7 @@ $(document).on('click', '.panel-heading span.icon_minim', function (e) {
         $this.removeClass('fa-plus').addClass('fa-minus');
     }
 });
-$(document).on('focus', '.panel-footer input.chat_input', function (e) {
+$(document).on('focus', '.panel-footer .chat_input', function (e) {
     var $this = $(this);
     if ($('#minim_chat_window').hasClass('panel-collapsed')) {
         $this.parents('.panel').find('.panel-body').slideDown();

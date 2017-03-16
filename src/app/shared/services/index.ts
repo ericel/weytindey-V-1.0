@@ -8,6 +8,7 @@ import { GeolocationService } from './geolocation/geolocation';
 import { PageService } from './page/page.service';
 import { NotificationService } from './notification/notification.service';
 import { MediaService } from './media/media.service';
+import { MessengerService } from './messenger/messenger.service';
 export const SERVICE_PROVIDER = [
   ApiService,
   EasyapiService,
@@ -18,5 +19,6 @@ export const SERVICE_PROVIDER = [
   GeolocationService,
   PageService,
   NotificationService,
-  MediaService
+  MediaService,
+  MessengerService
 ];
