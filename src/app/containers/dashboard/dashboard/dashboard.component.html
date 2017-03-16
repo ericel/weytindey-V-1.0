@@ -1,4 +1,4 @@
-<div *ngIf="!lockOpen">
+<!--<div *ngIf="!lockOpen">
    <main class="main">
        <form [formGroup]="lockForm" (ngSubmit)="submitForm(lockForm.value)">
             <div  class="form-group" [ngClass]="{'has-error':!lockForm.controls['lockKey'].valid && lockForm.controls['lockKey'].touched}">
@@ -10,15 +10,16 @@
                     #characterCountHint [formControl]="lockForm.controls['lockKey']">
               <md-hint align="end">{{characterCountHint.value.length}} / 9</md-hint>
               </md-input-container>
-              <!-- The hasError method can work with the built in validators but custom validators as well -->
+
               <div *ngIf="lockForm.controls['lockKey'].hasError('required') && lockForm.controls['lockKey'].touched" class="alert alert-danger">Enter Lock Key</div>
               <div *ngIf="lockForm.controls['lockKey'].hasError('minlength') && lockForm.controls['lockKey'].touched" class="alert alert-danger">Your lock key must be  9 characters long.</div>
               <div *ngIf="lockForm.controls['lockKey'].hasError('maxlength') && lockForm.controls['lockKey'].touched" class="alert alert-danger">Your lock key must be  9 characters long.</div>
             </div>
        </form>
    </main>
-</div>
-<div *ngIf="lockOpen">
+</div *ngIf="lockOpen">-->
+
+<div >
 <section class="side-bar">
   <ul class="list-group">
       <li class="list-group-item active">Dashboard</li>
@@ -31,82 +32,26 @@
       <li class="list-group-item" (click)="questions()">Questions</li>
       <li class="list-group-item" (click)="users()">Users</li>
   </ul>
+
 </section>
+<div *ngIf="contactUserOpen">
+    <app-contactcard 
+    [userchat]="user"
+    (checked)="chatChecked($event)"
+    ></app-contactcard>
+</div>
 <section class="side-bar-right">
   <ul class="list-group">
-      <li class="list-group-item justify-content-between">
-            Cras justo odio
-            <span class="badge badge-default badge-pill">14</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Dapibus ac facilisis in
-            <span class="badge badge-default badge-pill">2</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Morbi leo risus
-            <span class="badge badge-default badge-pill">1</span>
-          </li>
-           <li class="list-group-item justify-content-between">
-            Cras justo odio
-            <span class="badge badge-default badge-pill">14</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Dapibus ac facilisis in
-            <span class="badge badge-default badge-pill">2</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Morbi leo risus
-            <span class="badge badge-default badge-pill">1</span>
-          </li>
-           <li class="list-group-item justify-content-between">
-            Cras justo odio
-            <span class="badge badge-default badge-pill">14</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Dapibus ac facilisis in
-            <span class="badge badge-default badge-pill">2</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Morbi leo risus
-            <span class="badge badge-default badge-pill">1</span>
-          </li>
-           <li class="list-group-item justify-content-between">
-            Cras justo odio
-            <span class="badge badge-default badge-pill">14</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Dapibus ac facilisis in
-            <span class="badge badge-default badge-pill">2</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Morbi leo risus
-            <span class="badge badge-default badge-pill">1</span>
-          </li>
-           <li class="list-group-item justify-content-between">
-            Cras justo odio
-            <span class="badge badge-default badge-pill">14</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Dapibus ac facilisis in
-            <span class="badge badge-default badge-pill">2</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Morbi leo risus
-            <span class="badge badge-default badge-pill">1</span>
-          </li>
-           <li class="list-group-item justify-content-between">
-            Cras justo odio
-            <span class="badge badge-default badge-pill">14</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Dapibus ac facilisis in
-            <span class="badge badge-default badge-pill">2</span>
-          </li>
-          <li class="list-group-item justify-content-between">
-            Morbi leo risus
-            <span class="badge badge-default badge-pill">1</span>
-          </li>
+      <li class="list-group-item justify-content-between" *ngFor="let user of userss" (click)="contactUser(user.uid)" (mouseover)='overUser(user.uid)'>
+            {{user.username}}
+            <span class="badge badge-default badge-pill"  *ngIf="contactMessages">
+                <span *ngIf="showcountMsg">
+                {{contactMessages.length}}
+                </span>
+              </span>
+      </li>
   </ul>
+
 </section>
 <div class="dashboard">
 <main class="main">

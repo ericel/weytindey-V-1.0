@@ -29,14 +29,14 @@ _uid;_username;
            this._username = user.auth.displayName;
      }});
    }
-contact(message){
+contact(message, conType, mid){
   let token =  Md5.hashStr(new Date() + this._uid);
   let path = this.af.database.object(`eContact/${token}`);
   path.set({
              cid: token,
              uid: this._uid,
-             mid: "ms_"+this._uid,
-             con_type: "sender_main",
+             mid: mid,
+             con_type: conType,
              message: message.message,
              read: false,
              createdAt: firebase.database.ServerValue.TIMESTAMP

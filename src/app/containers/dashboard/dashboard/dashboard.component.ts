@@ -3,6 +3,8 @@ import { StatusService } from '../../../shared/services/status/status.service';
 import { PageService } from '../../../shared/services/page/page.service';
 import { MediaService } from '../../../shared/services/media/media.service';
 import { AuthService } from '../../../shared/services/auth/auth.service';
+import { MessengerService } from '../../../shared/services/messenger/messenger.service';
+
 import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
 import { FormGroup, FormBuilder, Validators, NgModel } from '@angular/forms';
 @Component({
@@ -22,13 +24,18 @@ userss;
 lockOpen: boolean = false;
 lock_key: string = "198762wey";
 lockForm : FormGroup;
+contactUserOpen: boolean = false;
+contactMessages;
+showcountMsg: boolean = false;
+user: any;
   constructor(
     private _statusService: StatusService,
     private _pageService: PageService,
     private _dialog: MdDialog,
     private _mediaService: MediaService,
     private _authService: AuthService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _messengerService: MessengerService
   ) { }
 
   ngOnInit() {
@@ -54,6 +61,8 @@ lockForm : FormGroup;
      });
     });
     this._authService._isUsers().subscribe(users => {this.userss = users;});
+
+   
   }
   blogs(){
     this.dashboard = false;
@@ -108,5 +117,23 @@ lockForm : FormGroup;
     this.questionOff = false;
     this.updatesOff = false;
     this.usersOff = true;
+  }
+  contactUser(uid: string){
+    this._authService.userById(uid).subscribe(user => {
+      this.user = user;
+    });
+    this.contactUserOpen = true;
+  }
+  chatChecked(event){
+    this.contactUserOpen = false;
+  }
+  overUser(useruid: string){
+    this.showcountMsg = true;
+     this._messengerService.getContactMessages().subscribe(messages => {
+   
+     this.contactMessages =  messages.filter(function(a){
+            return a.mid === "ms_"+useruid;
+      });
+    });
   }
 }

@@ -49,7 +49,8 @@ nomessages: boolean = false;
   }
 
   submitContact(message: any){
-    this._messengerService.contact(message);
+    let mid = "ms_"+this.user.uid;
+    this._messengerService.contact(message, "sender_main", mid);
     this.reset();
   }
   reset (){
