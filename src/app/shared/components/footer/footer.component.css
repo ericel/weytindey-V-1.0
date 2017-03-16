@@ -170,15 +170,8 @@
 	}
 
 }
-.container-c{
-	width: 350px;
 
-}
-.contact-box{
-	position: fixed;
-	right: 30px;
-	bottom: 0px;
-}
+
 .col-md-2, .col-md-10{
     padding:0;
 }
@@ -187,9 +180,8 @@
 }
 .chat-window{
     bottom:0;
-    position:fixed;
+	position: relative;
     float:right;
-    margin-left:10px;
 }
 .chat-window > div > .panel{
     border-radius: 5px 5px 0 0;
@@ -204,8 +196,15 @@
   max-height:300px;
   overflow-x:hidden;
 }
+.panel-footer {
+	background: #fff;
+	padding: 10px;
+	-webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+   -moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+   box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.75);
+}
 .top-bar {
-  background: #666;
+  background: #027986;
   color: white;
   padding: 10px;
   position: relative;
@@ -223,7 +222,7 @@
   background: white;
   padding: 10px;
   border-radius: 2px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
   max-width:100%;
 }
 .messages > p {
@@ -303,4 +302,38 @@ img {
     position:fixed;
     left:0px;
     bottom:0;
+}
+
+.contact-box{
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	width: 100%;
+	z-index: 9999;
+	box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+}
+@media screen and (min-width: 768px){
+.contact-box .container {
+	width: 100% !important;
+	padding:0 1% !important;
+}
+.contact-box .container{
+	width: 600px;
+}
+}
+
+@media screen and (max-width: 768px){
+.contact-box{
+	left: 0px;
+}
+.avatar {
+	width: 80px;
+	height:80px;
+}
+}
+.panel-footer input {
+	border: none !important;
+}
+.contact-box .fa {
+	cursor: pointer;
 }
