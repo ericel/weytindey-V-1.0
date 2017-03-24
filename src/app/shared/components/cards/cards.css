@@ -139,6 +139,18 @@ md-card-header {
     */
     margin-bottom: 15px !important;
 }
+.card-item{
+	cursor: crosshair;
+}
+.card-item h1, .h1 {
+    font-size: 1.5rem;
+    color: #000;
+    display:block;
+	position: relative;
+}
+.card-item md-card-header {
+    margin-bottom: 0px !important;
+}
 /* End Home Statuses */
 
 /* Audio File Cards */

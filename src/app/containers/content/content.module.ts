@@ -78,7 +78,7 @@ const routes: Routes = [
     }
  },
   {
-   path: 'content/_blog/:string/:cid/:string',
+   path: 'content/blog/:string/:cid/:string',
    component: BlogcontentComponent
   },
   

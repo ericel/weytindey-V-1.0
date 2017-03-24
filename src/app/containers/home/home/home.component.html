@@ -54,9 +54,9 @@
             </div>
           </div>
           </div>
-      <masonry [useImagesLoaded]="true">
+      <masonry [useImagesLoaded]="true" >
      
-        <masonry-brick class="col-md-3 " *ngFor="let status of statuses | paginate: { itemsPerPage: 12, currentPage: p }">
+        <masonry-brick class="col-md-3 " *ngFor="let status of statuses | paginate: { itemsPerPage: 24, currentPage: p }">
         <app-homecard
         [status]="status"
         (checked)="onStatusChecked($event)"

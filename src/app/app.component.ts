@@ -48,6 +48,7 @@ progress: boolean = false;
    router.events.forEach((event) => {
     if(event instanceof NavigationStart) {
       this.progress = true;
+      window.scrollTo(0,0);
     }
     if(event instanceof NavigationEnd){
       

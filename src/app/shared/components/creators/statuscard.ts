@@ -128,6 +128,7 @@ export class UpdateCard implements OnInit {
     <div *ngIf="progressCircular" class="wait">
         <md-progress-spinner mode="indeterminate" color="primary"></md-progress-spinner>
         <div class="alert alert-success"> Update successfully Posted </div>
+        <div id="countdown"></div>
     </div>
    <form [class.blur]="progressCircular" *ngIf="isAuthorized" (ngSubmit)="onCreateStatus()">
     <div *ngIf="errorStatus" class="alert alert-danger" role="alert">
@@ -184,7 +185,7 @@ export class StatusCard implements OnInit {
     private _authService: AuthService,
     private _GeolocationService: GeolocationService,
     private _dialog: MdDialog,
-    private statusService: StatusService,
+    private statusService: StatusService
     ) { }
 
   ngOnInit() {
@@ -227,7 +228,7 @@ export class StatusCard implements OnInit {
         if (i === 0) {
             clearInterval(myinterval );
             this.reset();
-            this.close(); 
+            this.close();
         }
         else {
             i--;

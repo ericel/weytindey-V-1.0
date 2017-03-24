@@ -4,7 +4,7 @@ import { AuthService } from '../../services/auth/auth.service';
   selector: 'app-promocardlist',
   template: `
   <div class="mar-10">
-   <md-card class="animated shake shadow-2" routerLink="/content/_blog/{{promo.blogCat | slugify}}/{{ promo.pid }}/{{promo.blogTitle | slugify | shorten: 50}}">
+   <md-card class="animated shake shadow-2" routerLink="/content/blog/{{promo.blogCat | slugify}}/{{ promo.pid }}/{{promo.blogTitle | slugify | shorten: 50}}">
    <img md-card-image src="{{promo.photoUrl}}">
    <md-card-content>
       <p>{{promo.blogTitle}}</p>
@@ -74,7 +74,7 @@ export class PromoCardList implements OnInit {
      <div class="col-md-9">
        <small> <i class="fa fa-clock-o" aria-hidden="true"></i> {{pagelike.createdAt | amTimeAgo:true}} ago!</small>
        <h1><a *ngIf="pagelike.contenttag" routerLink="/webcontent/{{pagelike.blogCat | slugify}}/{{ pagelike.pid }}/{{pagelike.blogTitle | slugify}}">{{pagelike.blogTitle}}</a>
-       <a *ngIf="!pagelike.contenttag" routerLink="/content/_blog/{{pagelike.blogCat | slugify}}/{{ pagelike.pid }}/{{pagelike.blogTitle | slugify}}">{{pagelike.blogTitle}}</a>
+       <a *ngIf="!pagelike.contenttag" routerLink="/content/blog/{{pagelike.blogCat | slugify}}/{{ pagelike.pid }}/{{pagelike.blogTitle | slugify}}">{{pagelike.blogTitle}}</a>
        </h1>
        <p>{{pagelike.blogDesc}}</p>
      </div>

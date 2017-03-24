@@ -74,7 +74,7 @@ createStatus(status, color, tags, type) {
          tags: tags,
          contenttag: type
        }).then(resolve => {
-        
+        this._notify.countDown('/content/status-update', sid, status); 
       }, reject => {
         this._notify.errorAttempt("Ouch! status couldn't be added!")
       })
@@ -101,6 +101,7 @@ createQuestion( question, tags, color, type ) {
          tags: tags,
          contenttag: type
       }).then(resolve => {
+        this._notify.countDown('/content/question', sid, question); 
       }, reject => {
         this._notify.errorAttempt("Ouch! question couldn't be added!")
       })
@@ -255,6 +256,8 @@ getStatus() {
     });  
   }
   sDelete(sid){
+    
+    if(sid){
     const path = this.af.database.object(`eStatus/${sid}`);
     path.remove();
     const blogPath = this.af.database.object(`eblogs/${sid}`);
@@ -280,6 +283,7 @@ getStatus() {
     snapshots.forEach(snapshot => {
       snapshot.ref.remove();
     });
+    return;
    });
 
     const raterscommentList = this.af.database.list('/eCommentRaters', {
@@ -332,6 +336,8 @@ getStatus() {
         //this._notify.errorAttempt("Ouch! Something bad has happened!"); 
       });
     }
+  }
+
   }
 
  deleteUnUploadedFile(){

@@ -774,3 +774,6 @@ blockquote{
 	font-style: italic;
 }
 /* END chat Box Style */
+.cdk-overlay-dark-backdrop {
+    background: rgb(0, 0, 0) !important;
+}

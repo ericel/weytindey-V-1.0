@@ -20,9 +20,9 @@ const routes: Routes = [
     { path: '', component: HomeComponent,
     data: {
        meta: {
-        title: 'Africa #1 Website!',
+        title: 'Africa #1 Website',
         description: 'One place web from mama Africa. Afro music, videos, blogs, news. All in one place.',
-        'og:image': 'https://enoeasy-94b34.firebaseapp.com/assets/img/logo_big.png'
+        'og:image': 'https://weytindey.com/assets/img/logo_big.png'
        }
     }
  },
@@ -33,8 +33,8 @@ const routes: Routes = [
   { path: 'sitemap', component: SitemapComponent,
     data: {
        meta: {
-        title: 'Africa #1 Website sitemap',
-        description: 'Sitemap'
+        title: 'Search weytindey',
+        description: 'Music, African Stories and more'
        }
     }
  }

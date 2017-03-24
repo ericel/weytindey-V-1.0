@@ -6,17 +6,14 @@
          &lt;loc&gt;
             https://weytindey.com/  
          &lt;/loc&gt;
-          &lt;lastmod&gt; 2017-02-27T03:59:32+00:00 &lt;/lastmod&gt;
    &lt;/url&gt;
    &lt;url&gt;
          &lt;loc&gt;
             https://weytindey.com/music 
          &lt;/loc&gt;
-          &lt;lastmod&gt; 2017-02-27T03:59:32+00:00 &lt;/lastmod&gt;
    &lt;/url&gt;
     &lt;url&gt;
          &lt;loc&gt; https://weytindey.com/stories &lt;/loc&gt;
-         &lt;lastmod&gt; 2017-02-27T03:59:32+00:00 &lt;/lastmod&gt;
    &lt;/url&gt;
    &lt;url&gt;
          &lt;loc&gt; https://weytindey.com/questions &lt;/loc&gt;
@@ -25,7 +22,6 @@
          &lt;loc&gt;
             https://weytindey.com/jobs 
          &lt;/loc&gt;
-          &lt;lastmod&gt; 2017-02-27T03:59:32+00:00 &lt;/lastmod&gt;
    &lt;/url&gt;
     </pre>
   </code>
@@ -35,8 +31,7 @@
        &lt;url&gt;
          &lt;loc&gt; <span *ngIf='url.type === "Audio"'>https://weytindey.com/music/{{url.type | slugify}}/{{ url.sid }}/{{url.status | slugify | shorten: 50}}</span>
               <span *ngIf='url.type === "Status Update" || url.type === "Question"'>https://weytindey.com/content/{{url.type | slugify}}/{{ url.sid }}/{{url.status | slugify | shorten: 50}}</span>
-              <span *ngIf='url.type !== "Status Update" && url.type !== "Question" && url.type !== "Audio"'>https://weytindey.com/content/_blog/{{url.type | slugify}}/{{ url.sid }}/{{url.status | slugify | shorten: 50}}</span>&lt;/loc&gt;
-          &lt;lastmod&gt; 2017-02-27T03:59:32+00:00 &lt;/lastmod&gt;
+              <span *ngIf='url.type !== "Status Update" && url.type !== "Question" && url.type !== "Audio"'>https://weytindey.com/content/blog/{{url.type | slugify}}/{{ url.sid }}/{{url.status | slugify | shorten: 50}}</span>&lt;/loc&gt;
       &lt;/url&gt;
        </pre>
     </div>

@@ -19,6 +19,7 @@ import {MdDialog, MdDialogRef, MdSnackBar} from '@angular/material';
      <div class="alert alert-success" role="alert">
       <strong>Well done!</strong> You successfully asked a question.
     </div>
+    <div id="countdown"></div>
     </div>
      <form [class.blur]="addedSuccess" *ngIf="isAuthorized" (ngSubmit)="onAskQuestion()">
      <div *ngIf="errorQuestion" class="alert alert-danger" role="alert">

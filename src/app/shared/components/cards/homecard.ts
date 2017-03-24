@@ -8,10 +8,10 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-homecard',
   template: `
-   <div *ngIf="status" >
+   <div *ngIf="status" class=" card-item">
      
     
-     <md-card  [class.animated]="isHide" [class.fadeOutUp]="isHide"  *ngIf="!hideStatus" class="animated shake">
+     <md-card  [class.animated]="isHide" [class.fadeOutUp]="isHide"  *ngIf="!hideStatus" class="animated shake shadow-1" [ngStyle]="{'background-color': status.color}">
       <md-card-header>
           <img md-card-avatar src="{{status.avatar}}">
           <md-card-title><a routerLink="/user/{{ status.uid }}/{{status.username | slugify}}">{{status.username | shorten: 8: '.'}}</a>  {{status.createdAt | amTimeAgo:true}} ago!</md-card-title>
@@ -26,10 +26,9 @@ import { Subscription } from 'rxjs';
         </md-menu>
           <md-card-subtitle class="type-0">
           {{status.type}}
-          
-          </md-card-subtitle>
-          
+          </md-card-subtitle> 
       </md-card-header>
+       <h1  *ngIf='status.contenttag !== "Status Update" && status.contenttag !== "Question"'>{{status.statustitle}}</h1> 
         <img *ngIf="status.photoUrl"  md-card-image  src="{{status.photoUrl}}">
     
       <div  *ngIf='status.type === "Audio"' class="music-010">
@@ -90,8 +89,10 @@ import { Subscription } from 'rxjs';
 
      <div  *ngIf='status.type !== "Audio"'>
       <md-card-content>
-          <div [outerHTML]="status.status | linky"></div>
-     
+      <h1  *ngIf='status.contenttag === "Status Update" || status.contenttag === "Question"' class="title">
+       <div [outerHTML]="status.status | linky"></div>
+      </h1>
+      <div *ngIf='status.contenttag !== "Status Update" && status.contenttag !== "Question"' [outerHTML]="status.status | linky"></div>
       </md-card-content>
       
        <md-card-actions class="container-fluid">
@@ -106,7 +107,7 @@ import { Subscription } from 'rxjs';
         
         <button md-button *ngIf='status.contenttag === "Webcontent"' routerLink="/webcontent/{{status.type | slugify}}/{{ status.sid }}/{{status.statustitle | slugify}}" class="nsm-01btn"><span class="no-big"><i class="fa fa-eye fa-2x" aria-hidden="true"></i></span><span class="no-sm-no">More..</span></button>
 
-        <button md-button *ngIf='status.contenttag !== "Status Update" && status.contenttag !== "Question" && status.contenttag !== "Webcontent"' routerLink="/content/_blog/{{status.type | slugify}}/{{ status.sid }}/{{status.statustitle | slugify }}" class="nsm-01btn"><span class="no-big "><i class="fa fa-eye fa-2x" aria-hidden="true"></i></span><span class="no-sm-no">More..</span></button>
+        <button md-button *ngIf='status.contenttag !== "Status Update" && status.contenttag !== "Question" && status.contenttag !== "Webcontent"' routerLink="/content/blog/{{status.type | slugify}}/{{ status.sid }}/{{status.statustitle | slugify }}" class="nsm-01btn"><span class="no-big "><i class="fa fa-eye fa-2x" aria-hidden="true"></i></span><span class="no-sm-no">More..</span></button>
 
          
 
@@ -125,8 +126,8 @@ import { Subscription } from 'rxjs';
         <app-commentscard [status]="status" [limit]="3">
         </app-commentscard>
           <div class="more-c" *ngIf='status.contenttag === "Status Update" || status.contenttag === "Question"'><a  routerLink="/content/{{status.type | slugify}}/{{ status.sid }}/{{status.status | slugify | shorten: 50}}"> Load more comments</a></div>
-           <div class="more-c" *ngIf='status.contenttag === "Webcontent"'><a  routerLink="/Webcontent/link/{{status.type | slugify}}/{{ status.sid }}/{{status.status | slugify | shorten: 50}}/_blank"> Load more comments</a></div>
-          <div class="more-c" *ngIf='status.contenttag !== "Status Update" && status.contenttag !== "Question" && status.contenttag !== "Webcontent"'><a  routerLink="/content/_blog/{{status.type | slugify}}/{{ status.sid }}/{{status.status | slugify | shorten: 50}}/blog.html"> Load more comments</a></div> 
+           <div class="more-c" *ngIf='status.contenttag === "Webcontent"'><a  routerLink="/webcontent/{{status.type | slugify}}/{{ status.sid }}/{{status.status | slugify | shorten: 50}}"> Load more comments</a></div>
+          <div class="more-c" *ngIf='status.contenttag !== "Status Update" && status.contenttag !== "Question" && status.contenttag !== "Webcontent"'><a  routerLink="/content/blog/{{status.type | slugify}}/{{ status.sid }}/{{status.status | slugify | shorten: 50}}"> Load more comments</a></div> 
       </div>  
         </div>
 
@@ -190,6 +191,8 @@ api: VgAPI;
 
   delete(sid){
     this._statusService.sDelete(sid);
+    this.hide(false);
+   
   }
 
 openDialog() {

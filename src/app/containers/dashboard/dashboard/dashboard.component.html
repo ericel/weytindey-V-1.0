@@ -1,4 +1,4 @@
-<!--<div *ngIf="!lockOpen">
+<div *ngIf="!lockOpen">
    <main class="main">
        <form [formGroup]="lockForm" (ngSubmit)="submitForm(lockForm.value)">
             <div  class="form-group" [ngClass]="{'has-error':!lockForm.controls['lockKey'].valid && lockForm.controls['lockKey'].touched}">
@@ -17,9 +17,9 @@
             </div>
        </form>
    </main>
-</div *ngIf="lockOpen">-->
+</div>
 
-<div >
+<div *ngIf="lockOpen">
 <section class="side-bar">
   <ul class="list-group">
       <li class="list-group-item active">Dashboard</li>

@@ -30,8 +30,9 @@
       </md-card-header>
       <img *ngIf="page.photoUrl" md-card-image src="{{page.photoUrl}}">
       <md-card-content>
+        <h1 class="title">
            <div [innerHTML]="page.status | linky"></div>
-
+        </h1>
       </md-card-content>
       <md-card-actions class="container-fluid">
        <div class="pull-left">
