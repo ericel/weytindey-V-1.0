@@ -8,10 +8,8 @@ import { Subscription } from 'rxjs';
 @Component({
   selector: 'app-homecard',
   template: `
-   <div *ngIf="status" class=" card-item">
-     
-    
-     <md-card  [class.animated]="isHide" [class.fadeOutUp]="isHide"  *ngIf="!hideStatus" class="animated shake shadow-1" [ngStyle]="{'background-color': status.color}">
+   <div *ngIf="status && !hideStatus" [class.animated]="isHide" [class.fadeOutUp]="isHide" class=" card-item animated shake shadow-1-main " >
+     <md-card  [ngStyle]="{'background-color': status.color}" [class.changeContentColor]="isBgNotWhite">
       <md-card-header>
           <img md-card-avatar src="{{status.avatar}}">
           <md-card-title><a routerLink="/user/{{ status.uid }}/{{status.username | slugify}}">{{status.username | shorten: 8: '.'}}</a>  {{status.createdAt | amTimeAgo:true}} ago!</md-card-title>
@@ -149,6 +147,7 @@ comment;
  isAuthorized: boolean = false;
  user;
 playing: boolean = false;
+isBgNotWhite: boolean = false;
 sources:Array<Object>;
 
 api: VgAPI;
@@ -169,6 +168,10 @@ api: VgAPI;
           this.status
      ];
     }
+
+    if(this.status.color !== '#fff'){
+      this.isBgNotWhite = true;
+    }
   
   }
   showLove(){
@@ -188,7 +191,7 @@ api: VgAPI;
         }
      }, 500);
   }
-
+  
   delete(sid){
     this._statusService.sDelete(sid);
     this.hide(false);

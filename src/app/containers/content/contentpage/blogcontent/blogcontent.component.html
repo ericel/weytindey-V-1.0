@@ -6,9 +6,11 @@
   <div *ngIf="pageOk && authOk && pageBlg && page" class="row gutter-20 animated slideInUp">
      <div class="col-md-3">
        <app-adscreate class="no-sm-no"></app-adscreate>
-       <app-adsone></app-adsone>
-       <app-adsmovies class="no-sm-no"></app-adsmovies>
+       <app-adsone class="no-big"></app-adsone>
+       <app-adslist class="no-sm-no"></app-adslist>
        <app-adsmusic class="no-sm-no"></app-adsmusic>
+       <app-adsmovies class="no-sm-no"></app-adsmovies>
+       
      </div>
      <div class="col-md-6">
         <md-card class="shadow-2 mar-10 page-header">
@@ -31,6 +33,7 @@
       <img class="blg-image" *ngIf="pageBlg.photoUrl" md-card-image src="{{pageBlg.photoUrl}}">
       <md-card-content class="blog-post">
           <div [innerHTML]="pageBlg.blog"></div>
+          
       </md-card-content>
       <md-card-actions class="container-fluid">
        <div class="pull-left">
@@ -57,9 +60,9 @@
      </md-card>
      </div>
      <div class="col-md-3">
-        <app-adslist></app-adslist>
+       <app-adsone></app-adsone>
       <div *ngFor="let promo of promopages;  let i=index">
-      <template *ngIf="i<2  && promo.pid !== pageBlg.pid">
+      <template *ngIf="i<5  && promo.pid !== pageBlg.pid">
         <app-promocardlist
           [promo]="promo"
         ></app-promocardlist>

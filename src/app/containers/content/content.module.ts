@@ -22,6 +22,7 @@ import { PageComponent } from './add/page/page.component';
 import { JobComponent } from './add/job/job.component';
 import { PlaceComponent } from './add/place/place.component';
 import {Ng2PaginationModule} from 'ng2-pagination';
+import { PageweyComponent } from './contentpage/pagewey/pagewey/pagewey.component';
 const routes: Routes = [
 { path: 'add', component: AddComponent,
     data: {
@@ -80,8 +81,12 @@ const routes: Routes = [
   {
    path: 'content/blog/:string/:cid/:string',
    component: BlogcontentComponent
-  },
-  
+  }
+  ,
+  {
+   path: 'page/:pid/:string',
+   component: PageweyComponent
+  }, 
   {
    path: '_blog/editblog/:bid/:string',
    component: EditblogComponent,
@@ -132,7 +137,8 @@ const routes: Routes = [
     BlogcontentComponent,
     PageComponent,
     JobComponent,
-    PlaceComponent
+    PlaceComponent,
+    PageweyComponent
   ]
 })
 export class ContentModule { }

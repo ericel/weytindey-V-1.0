@@ -66,27 +66,31 @@ export class PromoCardList implements OnInit {
 @Component({
   selector: 'app-promoListLike',
   template:`
+  <md-card class="list-likeis">
   <div class="container-fluid list-like">
   <div class="row">
-     <div class="col-md-3">
+     <div class="col-md-12">
        <img class="blog-avatar" src="{{pagelike.photoUrl}}" alt="{{pagelike.blogTitle}}">
      </div>
-     <div class="col-md-9">
-       <small> <i class="fa fa-clock-o" aria-hidden="true"></i> {{pagelike.createdAt | amTimeAgo:true}} ago!</small>
+     <div class="col-md-12">
+       <small> <i class="fa fa-clock-o" aria-hidden="true"></i> {{pagelike.createdAt | amTimeAgo:true}} ago!</small><small class="pull-right color-red-is" >{{pagelike.blogCat}}</small>
        <h1><a *ngIf="pagelike.contenttag" routerLink="/webcontent/{{pagelike.blogCat | slugify}}/{{ pagelike.pid }}/{{pagelike.blogTitle | slugify}}">{{pagelike.blogTitle}}</a>
        <a *ngIf="!pagelike.contenttag" routerLink="/content/blog/{{pagelike.blogCat | slugify}}/{{ pagelike.pid }}/{{pagelike.blogTitle | slugify}}">{{pagelike.blogTitle}}</a>
        </h1>
-       <p>{{pagelike.blogDesc}}</p>
+       <p>{{pagelike.blogDesc | shorten: 100 : '..'}}</p>
      </div>
      <div class="clearfix"></div>
-     <md-divider color="primary"></md-divider>
   </div>  
    </div>
+   </md-card>
   `,
   styles: [`
+  md-card.list-likeis {
+    margin-bottom : 10px;
+  }
    .list-like img.blog-avatar{
      width:100%;
-     height: 100px;
+     max-height: 200px;
    }
    .list-like h1 {
      margin: 10px 0;
@@ -94,14 +98,12 @@ export class PromoCardList implements OnInit {
    }
  
   .list-like {
-    margin: 20px 0 !important;
-    border-bottom: 1px solid #ccd;
-    padding: 10px 0px;
+    margin: 0px 0 !important;
+   
     }
    
    @media screen and (max-width: 769px){
       .list-like .row {
-
         margin-right: 0px !important;
         margin-left: 0px !important; 
     }
@@ -119,7 +121,9 @@ export class PromoCardList implements OnInit {
     margin: 0;
     border-color: #e6e4e4;
   }	
-   
+  .list-like .color-red-is {
+     color: red !important;
+   }
   `]
 })
 export class AdslistlikeCard implements OnInit {

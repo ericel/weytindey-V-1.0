@@ -6,6 +6,7 @@ import { StatusService } from './status/status.service';
 import { StoreHelper } from './store-helper';
 import { GeolocationService } from './geolocation/geolocation';
 import { PageService } from './page/page.service';
+import { PageweyService } from './pagewey/pagewey.service';
 import { NotificationService } from './notification/notification.service';
 import { MediaService } from './media/media.service';
 import { MessengerService } from './messenger/messenger.service';
@@ -20,5 +21,6 @@ export const SERVICE_PROVIDER = [
   PageService,
   NotificationService,
   MediaService,
-  MessengerService
+  MessengerService,
+  PageweyService
 ];

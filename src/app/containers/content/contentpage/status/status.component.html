@@ -6,9 +6,10 @@
 <div *ngIf="pageOk && authOk && page" class="row gutter-20 animated slideInUp">
   <div class="col-md-3">
       <app-adscreate class="no-sm-no"></app-adscreate>
-       <app-adsone></app-adsone>
-       <app-adsmovies class="no-sm-no"></app-adsmovies>
+       <app-adsone class="no-big"></app-adsone>
+       <app-adslist class="no-sm-no"></app-adslist>
        <app-adsmusic class="no-sm-no"></app-adsmusic>
+       <app-adsmovies class="no-sm-no"></app-adsmovies>
   </div>
   <div class="col-md-6">
     <div class="mar-10"></div>
@@ -54,9 +55,9 @@
   </md-card>
   </div>
   <div class="col-md-3">
-     <app-adslist></app-adslist>
+     <app-adsone></app-adsone>
       <div *ngFor="let promo of promopages;  let i=index">
-     <template [ngIf]="i<2">
+     <template [ngIf]="i<5">
       <app-promocardlist
         [promo]="promo"
       ></app-promocardlist>

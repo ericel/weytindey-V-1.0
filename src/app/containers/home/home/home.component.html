@@ -34,7 +34,23 @@
       </div>
 
       <div class="ms-home">
-        <div class="innertube">
+        
+      <masonry [useImagesLoaded]="true" >
+     
+        <masonry-brick class="col-md-3 " *ngFor="let status of statuses | paginate: { itemsPerPage: 24, currentPage: p }">
+        <app-homecard
+        [status]="status"
+        (checked)="onStatusChecked($event)"
+        >
+       </app-homecard>
+       <div class="mar-15"></div>
+      
+        </masonry-brick>
+        
+      </masonry>
+
+      <div *ngIf="statuses.length < 1" class="alert alert-warning">No Results to show yet</div>
+      <div class="innertube">
           <div class="row gutter-0 text-center-sm">
             <div class="col-md-2">
             <button  md-button [mdMenuTriggerFor]="menu"><i class="fa fa-sort-amount-desc" aria-hidden="true"></i> <span class="sorter">Sort</span></button>
@@ -54,21 +70,6 @@
             </div>
           </div>
           </div>
-      <masonry [useImagesLoaded]="true" >
-     
-        <masonry-brick class="col-md-3 " *ngFor="let status of statuses | paginate: { itemsPerPage: 24, currentPage: p }">
-        <app-homecard
-        [status]="status"
-        (checked)="onStatusChecked($event)"
-        >
-       </app-homecard>
-       <div class="mar-15"></div>
-      
-        </masonry-brick>
-        
-      </masonry>
-
-      <div *ngIf="statuses.length < 1" class="alert alert-warning">No Results to show yet</div>
     </div>
   </div>
 </main>

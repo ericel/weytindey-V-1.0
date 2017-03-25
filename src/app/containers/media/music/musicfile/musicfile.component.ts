@@ -5,6 +5,8 @@ import { PageService } from '../../../../shared/services/page/page.service';
 import { StatusService } from '../../../../shared/services/status/status.service';
 import { ActivatedRoute } from '@angular/router';
 import { MetaService } from 'ng2-meta/src';
+import * as firebase from 'firebase';
+import { Headers, Http, Response, RequestOptions, ResponseContentType } from '@angular/http';
 @Component({
   selector: 'app-musicfile',
   templateUrl: './musicfile.component.html',
@@ -15,13 +17,16 @@ playing: boolean = false;
 sources:Array<Object>;
 sourcesLike:Array<Object>;
 id; auth; page; pageOk: boolean = false;
+storageRef; file_url;
+handleError;
   constructor(
     private _mediaService: MediaService,
     private _authService: AuthService,
     private route: ActivatedRoute,
     private _pageService: PageService,
     private _metaService: MetaService,
-    private _statusService: StatusService
+    private _statusService: StatusService,
+    private http: Http
   ) { 
 
   }
@@ -61,6 +66,11 @@ id; auth; page; pageOk: boolean = false;
    });
 
    this.moreofArtist();
+
+    this.storageRef = firebase.storage().ref().child(`eAudio/${ this.id}`);
+    this.storageRef.getDownloadURL().then(url => {
+    this.file_url = url;
+   });
   }
 
 moreofArtist(){
@@ -81,5 +91,32 @@ createRange(len=32) {
       arr.push(i);
     }
     return arr;
+  }
+downloadFile() {
+    let downloadUrl = "https://firebasestorage.googleapis.com/v0/b/enoeasy-94b34.appspot.com/o/Davido%20-%20If.mp3?alt=media&token=603f3beb-2380-42a4-a119-7bbb34769d78"
+    let headers = new Headers({ 'Content-Type': 'audio/mpeg', 'MyApp-Application' : 'AppName', 'Accept': 'audio/*' });
+    let options = new RequestOptions({ headers: headers, responseType: ResponseContentType.Blob });
+
+    return this.http.post(downloadUrl, '', options)
+        .map(this.extractContent)
+        .catch(this.handleError);
+    }
+
+private extractContent(res: Response) {
+        let blob: Blob = res.blob();
+        window['saveAs'](blob, 'test.mp3');
+}
+download(){
+    this.storageRef = firebase.storage().ref().child(`eAudio/${ this.id}`);
+    this.storageRef.getDownloadURL().then(url => {
+    const file_url = url;
+    this.file_url = url;
+    var el = document.createElement('a');
+    el.download = "Eric.mp3";
+    el.href = file_url;
+    //document.body.appendChild(el);
+    el.click();
+    //el.remove();
+   });
   }
 }

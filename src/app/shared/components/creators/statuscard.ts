@@ -175,10 +175,10 @@ export class StatusCard implements OnInit {
  user;
  tags;
  statusShow: boolean = false;
- colors: Array<string> = ['#737EA8','#B19CD9', '#FF6961', '#77DD77', '#AEC6CF', '#F49AC2', 'white'];
+ colors: Array<string> = ['#737EA8','#B19CD9', '#FF6961', '#77DD77', '#AEC6CF', '#F49AC2', '#fff', '#000'];
  newStatus = {
     status: '',
-    color: '#',
+    color: '#fff',
     tags: this.tags
   };
   constructor(
@@ -199,7 +199,7 @@ export class StatusCard implements OnInit {
          this.tags = [value.city, value.country, 'status updates'];
           this.newStatus = {
             status: '',
-            color: '#',
+            color: '#fff',
             tags: this.tags
           };
        });
@@ -242,7 +242,7 @@ export class StatusCard implements OnInit {
   reset() {
     this.newStatus = {
       status: '',
-      color: '#',
+      color: '#fff',
       tags: ''
     };
   }

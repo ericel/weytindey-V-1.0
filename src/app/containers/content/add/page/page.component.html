@@ -1,5 +1,58 @@
 <main class="main">
+  <div class="mar-15"></div>
+  <md-card>
   <div class="container-fluid">
-     Coming soon .....
+     <h1 class="text-center page-title">Weytindey pages are cause related, content share and discussions on a particular subject.</h1>
+     <h1 class="text-center page-title color-green">Start By Choosing a Page Category Below</h1>
+     <div class="row">
+       <div class="col-md-12">
+        <form *ngIf="!submitted" class="pageform" [formGroup]="pageForm" (ngSubmit)="submitPage(pageForm.value)">
+        <div class="form-group" [ngClass]="{'has-error':!pageForm.controls['pageCat'].valid && pageForm.controls['pageCat'].touched}">
+       <div class="mar-10"><h1>What is this page about?</h1></div>
+          <md-select   placeholder="Choose Page Category" [formControl]="pageForm.controls['pageCat']">
+              <md-option  *ngFor="let type of types" [value]="type">{{ type }}</md-option>
+          </md-select>
+          <div *ngIf="pageForm.controls['pageCat'].hasError('required') && pageForm.controls['pageCat'].touched" class="alert alert-danger">You must select a category</div>
+        </div>
+        <div  class="form-group" [ngClass]="{'has-error':!pageForm.controls['pageTitle'].valid && pageForm.controls['pageTitle'].touched}">
+        <h1 class="mar-10">A Good Titile Will Make a Difference</h1>
+          <md-input-container>
+               <input mdInput
+               placeholder="Page Title"
+               maxlength="150"
+               #characterCountHint 
+               [formControl]="pageForm.controls['pageTitle']"
+               >
+               <md-hint align="end">{{characterCountHint .value.length}} / 150</md-hint>
+          </md-input-container>
+          <!-- The hasError method can work with the built in validators but custom validators as well -->
+        <div *ngIf="pageForm.controls['pageTitle'].hasError('required') && pageForm.controls['pageTitle'].touched" class="alert alert-danger">You must include a Title.</div>
+        <div *ngIf="pageForm.controls['pageTitle'].hasError('minlength') && pageForm.controls['pageTitle'].touched" class="alert alert-danger">Your Title must be at least 10 characters long.</div>
+        <div *ngIf="pageForm.controls['pageTitle'].hasError('maxlength') && pageForm.controls['pageTitle'].touched" class="alert alert-danger">Your Title cannot exceed 150 characters.</div>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error':!pageForm.controls['pageDesc'].valid && pageForm.controls['pageDesc'].touched}">
+              <div class="mar-10">Don't let us decide what should appear as your page description!</div>
+          <md-input-container >
+              <textarea mdInput class="desc"
+                    placeholder="Description of this Page"
+                    #characterCountHintText
+                    [formControl]="pageForm.controls['pageDesc']"></textarea>
+              <md-hint align="end">{{characterCountHintText.value.length}} / 500</md-hint>
+             </md-input-container>
+              <div *ngIf="pageForm.controls['pageDesc'].hasError('required') && pageForm.controls['pageDesc'].touched" class="alert alert-danger">You must Write a Daft.</div>
+              <div *ngIf="pageForm.controls['pageDesc'].hasError('minlength') && pageForm.controls['pageDesc'].touched" class="alert alert-danger">Your Draft must be at least 50  characters long.</div>
+              <div *ngIf="pageForm.controls['pageDesc'].hasError('maxlength') && pageForm.controls['pageDesc'].touched" class="alert alert-danger">Your Draft cannot exceed 500 characters.</div>
+        </div>
+        <button class="pull-right" md-button md-raised-button color="primary" type="submit" [disabled]="!pageForm.valid" >Publish Your page</button>
+        </form>
+
+        <div *ngIf="submitted" class="alert alert-success">
+          <h1>Your page was successfully published!</h1>
+          <p> Your will be redirected in a moment </p>
+          <div id="countdown" class="aligned"></div>
+        </div>
+       </div>
+     </div>
   </div>
+  </md-card>
 </main>

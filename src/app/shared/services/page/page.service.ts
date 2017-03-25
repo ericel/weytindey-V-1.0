@@ -14,7 +14,7 @@ import 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Md5 } from 'ts-md5/dist/md5';
-import { NotificationService } from '../notification/notification.service'
+import { NotificationService } from '../notification/notification.service';
 @Injectable()
 export class PageService {
 page: FirebaseObjectObservable<any>;

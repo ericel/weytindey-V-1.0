@@ -1,0 +1,49 @@
+.page-avatar {
+    max-height: 300px;
+}
+img.page-avatar {
+    width:100%;
+}
+.category {
+    font-style: italic;
+}
+.title {
+    font-size: 1.8em;
+}
+.author {
+    font-size: 1em;
+} 
+.rating {
+    font-size: 1.8em;
+}
+.author img {
+    height: 40px !important;
+    width: 40px !important;
+    border-radius: 100%;
+}
+.header-txt {
+    font-size: 0.8em;
+    font-style: italic;
+    color: #999;
+    margin-bottom: 15px;
+}
+.photos{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    clear: both;
+    box-shadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+   
+}
+@media screen and (min-width: 768px){
+   .photos{
+    position: absolute;
+    z-index: 9992;
+     bottom: 0px;
+}
+}
+.page-photo{
+    height: 250px;
+    width:100%;
+}

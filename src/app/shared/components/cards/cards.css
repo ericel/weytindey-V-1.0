@@ -69,10 +69,7 @@
     -ms-flex-align: center;
     align-items: center;
     cursor: pointer;
-    word-wrap: break-word !important;
-    word-break: break-all;
-    white-space: pre-line;
-
+    word-wrap: break-word; 
   }
   .row {
     margin: 10px 0;
@@ -150,6 +147,16 @@ md-card-header {
 }
 .card-item md-card-header {
     margin-bottom: 0px !important;
+}
+
+.changeContentColor {
+	color: #fff !important;
+}
+.changeContentColor h1{
+	color: #fff !important;
+}
+.changeContentColor .mat-card-subtitle, .changeContentColor .fa{
+	color: #ccd !important;
 }
 /* End Home Statuses */
 
